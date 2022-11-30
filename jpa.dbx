@@ -1,0 +1,7 @@
+\ProvidesFile{jpa.dbx}[2022/06/22\space v9.16\space APA biblatex style data model]
+\DeclareDatamodelFields[type=list, datatype=name, label=true]{origauthor}
+\DeclareDatamodelEntryfields{origauthor}
+\DeclareDatamodelFields[type=list, datatype=name, label=true]{translatora}
+\DeclareDatamodelEntryfields{translatora}
+\DeclareDatamodelFields[type=field,datatype=literal]{translatortype}
+\DeclareDatamodelFields[type=field,datatype=literal]{translatoratype}

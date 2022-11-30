@@ -1,0 +1,183 @@
+\ProvidesFile{jpa.cbx}[2022/11/30\space v1.0\space JPA biblatex citation style]
+
+
+\RequireCitationStyle{authoryear-comp}
+
+% et alが重複して表示されないようにする
+\DefineBibliographyStrings{english}{andothers={}}
+
+% 著者名と出版年の区切りはコンマ
+\DeclareDelimFormat{nameyeardelim}{\addcomma\space}
+
+% 引用ごとに言語を判断して処理
+\AtEveryCitekey{%
+  \ifthenelse{\equal{\thefirstlistitem{language}}{japanese}}{%
+      \setboolean{japanese}{true}%
+    }{%
+      \setboolean{japanese}{false}%
+    }%
+  \ifthenelse{\boolean{japanese}}{%
+    % 日本語文献用の設定
+    %
+    % 著者名の区切り文字：中黒（・）
+    \renewcommand*{\finalnamedelim}{\printtext{・}}%
+    % 最後の著者名の表示前の区切り：中黒（・）
+    \renewcommand*{\multinamedelim}{\printtext{・}}%
+    % 3名以上の共著で著者名を省略する場合：「他」
+    \renewcommand*{\andothersdelim}{他}%
+    % 姓と名の区切り
+    \renewcommand{\revsdnamepunct}{\space}%
+    % 余分な and を抑制
+    \renewcommand{\textcitedelim}{}%
+  }{%
+    % 英語文献用の設定
+    %
+    % 著者名の区切り文字：「, 」
+    \renewcommand*{\multinamedelim}{\addcomma\space}%
+    % 最後の著者名の表示前の区切り（共著者が2なら「&」，それ以外は「, &」
+    \renewcommand*{\finalnamedelim}{%
+      \ifnum\value{liststop}>2\finalandcomma\fi\addspace\&\space}%
+    % 3名以上の共著で著者名を省略する場合：「et al.」
+    \renewcommand*{\andothersdelim}{\space{et al.,}\space}%
+  }%%
+}
+
+%%% 処理用マクロ % apa.cbxのものを改変
+\newbibmacro*{labelname:doname}[8]{%
+  \ifthenelse{\value{listcount}>1\OR\ifuniqueprimaryauthor}%
+    {\setcounter{uniquename}{0}}%
+    {}%
+  \ifthenelse{\boolean{japanese}}{%
+    \ifcase\value{uniquename}%
+      \usebibmacro{name:family}{#1}{#3}{\relax}{\relax}%
+    \or
+      \usebibmacro{name:family-given}{#1}{#3}{\relax}{\relax}%
+    \or
+      \usebibmacro{name:family-given}{#1}{#3}{\relax}{\relax}%
+    \fi%
+    }{%
+    \ifcase\value{uniquename}%
+      \ifuseprefix
+        {\usebibmacro{name:family}{#1}{#3}{#5}{\relax}}
+        {\usebibmacro{name:family}{#1}{#3}{\relax}{\relax}}%
+    \or
+      \ifuseprefix
+        {\usebibmacro{name:given-family}{#1}{#4}{#5}{\relax}}
+        {\usebibmacro{name:given-family}{#1}{#4}{\relax}{\relax}}%
+    \or
+      \ifuseprefix
+        {\usebibmacro{name:given-family}{#1}{#3}{#5}{\relax}}
+        {\usebibmacro{name:given-family}{#1}{#3}{\relax}{\relax}}%
+    \fi%
+  }%
+  \usebibmacro{name:andothers}%
+}
+
+%% 曖昧さ回避の場合の「他」の前のコンマを削除
+\renewbibmacro*{name:andothers}{%
+  \ifthenelse{\equal{\value{listcount}}{\value{liststop}}\AND\ifmorenames}{%
+    \ifthenelse{\boolean{japanese}}{}{%  
+      \ifnumgreater{\value{liststop}}{1}
+        {\finalandcomma}
+        {}}%
+    \printdelim{andothersdelim}}
+{}}
+
+
+\DeclareNameFormat{labelname}{%
+  \usebibmacro{labelname:doname}%
+    {\namepartfamily}%
+    {\namepartfamilyi}%
+    {\namepartgiven}%
+    {\namepartgiveni}%
+    {\namepartprefix}%
+    {\namepartprefixi}%
+    {\namepartsuffix}%
+    {\namepartsuffixi}}
+
+\DeclareNameAlias{translator}{labelname}
+\DeclareNameAlias{origauthor}{labelname}
+   
+
+\renewbibmacro*{textcite}{%
+  % 同じ著者の引用が複数続く場合は区切り文字と出版年のみを表示
+  \iffieldequals{namehash}{\cbx@lasthash}{%
+    \setunit{\compcitedelim}%
+    \usebibmacro{cite:plabelyear+extradate}}{%
+    % 引用開始
+    \ifbool{cbx:parens}
+       {\bibcloseparen\global\boolfalse{cbx:parens}}
+       {}%
+    \setunit{\textcitedelim}%
+    % 著者名 日本語訳の書籍の場合は，原著者の名前を原語表記
+    \ifnameundef{origauthor}{%
+      \iffieldequalstr{relatedtype}{translationof}{%
+        \entrydata*{\thefield{related}}{\printnames{labelname}}%
+      }{\printnames{labelname}}
+    }{%
+      \printnames{origauthor}
+    }%
+    % 著者名と出版年の区切り
+    \setunit{\global\booltrue{cbx:parens}%
+             \printdelim{nameyeardelim}%
+             \bibopenparen}%
+    % 「prenote」の処理
+      \ifnumequal{\value{citecount}}{1}
+          {\usebibmacro{prenote}}
+          {}%
+    % 出版年
+    \usebibmacro{cite:plabelyear+extradate}%
+    % 著者名ハッシュの一時保存
+    \savefield{namehash}{\cbx@lasthash}%
+    \stepcounter{textcitecount}}%
+}
+
+
+\renewbibmacro*{cite}{%
+  \iffieldequals{namehash}{\cbx@lasthash}
+  % 同じ著者の引用が複数続く場合は区切り文字と出版年のみを表示
+   {\setunit{\compcitedelim}%
+    \usebibmacro{cite:plabelyear+extradate}}{%
+     \ifnameundef{shortauthor}
+       {\printnames{labelname}}%
+       {\cbx@apa@ifnamesaved
+         {\printnames{shortauthor}}
+         {\printnames[labelname]{author}%
+          \addspace\printnames[sabrackets]{shortauthor}}}%
+       \setunit{\printdelim{nameyeardelim}}%
+      \usebibmacro{cite:plabelyear+extradate}%
+      \savefield{namehash}{\cbx@lasthash}}%
+   \setunit{\multicitedelim}}
+
+% 翻訳や再版の場合の処理を含む出版年の処理 %apa 
+\newbibmacro*{cite:plabelyear+extradate}{%
+  \iffieldundef{year}{%
+  \iffieldundef{pubstate}{\printlabeldateextra}%
+    {\printfield{pubstate}}%
+  }{%
+    \ifthenelse{\boolean{japanese}}{%
+      \iffieldundef{origyear}{}{% 翻訳書の原著出版年
+        \printorigdate%
+        \addspace}%
+      \iffieldequalstr{relatedtype}{translationof}{%
+        \entrydata*{\thefield{related}}{\printdateextra}%
+        \addspace}{}%
+      \ifnameundef{translator}{}{% 翻訳者
+        \printnames{translator}%
+        \iffieldundef{translatortype}{\printtext{訳}\space}%
+        {\printfield{translatortype}\space}%
+      }%
+      \printlabeldateextra%
+      }{%
+      \iffieldundef{origyear}{}{\printorigdate\setunit*{\addslash}}%
+      \iffieldequalstr{relatedtype}{translationof}{%
+        \entrydata*{\thefield{related}}{\printlabeldateextra}%
+        \setunit*{\addslash}%
+      }{}%
+      \printlabeldateextra%
+    }%
+  }%
+}
+
+
+\endinput
