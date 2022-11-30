@@ -104,6 +104,7 @@ usetranslator=true%
 }
 \DeclareNameAlias{author}{default}
 \DeclareNameAlias{editor}{default}
+\DeclareNameAlias{editora}{default}
 \DeclareNameAlias{translator}{default}
 \DeclareNameAlias{translatora}{default}
 \DeclareNameAlias{origauthor}{default}
@@ -187,6 +188,10 @@ usetranslator=true%
 \renewbibmacro*{editor}{%
   \printnames{editor}%
   \usebibmacro{ed-eds:editor}%
+  \ifnameundef{editora}{}{
+    \printnames{editora}%
+    \usebibmacro{ed-eds:editora}%
+  }%
   \adddot\space%
 }
 
@@ -213,6 +218,22 @@ usetranslator=true%
       \iffieldundef{editortype}{%
         \printtext[parens]{編}}{%
         \printfield[parens]{editortype}}}%
+  }{%
+    \ifthenelse{\value{editor}>1}{%
+      \addspace\printtext[parens]{Eds.}%
+    }{%
+      \addspace\printtext[parens]{Ed.}%
+    }%
+  }
+}
+
+\newbibmacro*{ed-eds:editora}{%
+  \ifthenelse{\boolean{japanese}}{%
+    \iffieldequalstr{editoratype}{editor}{
+      \printtext[parens]{編}}{%
+      \iffieldundef{editoratype}{%
+        \printtext[parens]{編}}{%
+        \printfield[parens]{editoratype}}}%
   }{%
     \ifthenelse{\value{editor}>1}{%
       \addspace\printtext[parens]{Eds.}%
@@ -471,10 +492,19 @@ usetranslator=true%
 \newbibmacro*{book}{%
   % 著者名
   \ifnameundef{author}{}{%
-    \usebibmacro{author+year}\setunit{\addperiod\addspace}}%
+    \usebibmacro{author+year}%
+    \ifthenelse{\boolean{japanese}}{}{%
+    \setunit{\addperiod\addspace}}}%
   % 編集者名
   \ifnameundef{editor}{}{%
-    \usebibmacro{editor+year}\setunit{\addperiod\addspace}}%
+    \printnames{editor}\usebibmacro{ed-eds:editor}%
+    \printtext[parens]{\printdateextra}%
+    \ifnameundef{editora}{}{%
+      \printnames{editora}\usebibmacro{ed-eds:editora}%
+      \printtext[parens]{\printdateextra}%
+    }\setunit{\adddot\space}%
+    \ifthenelse{\boolean{japanese}}{}{%
+    \setunit{\addperiod\addspace}}}%
   % 表題
   \printfield{title}%
   \iffieldundef{subtitle}{}{%
