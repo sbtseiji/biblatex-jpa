@@ -500,16 +500,15 @@ dateabbrev=false,%
   % 著者名
   \ifnameundef{author}{}{%
     \printnames{author}\usebibmacro{ed-eds:author}%
-    \printtext[parens]{\printdateextra}%
-    \setunit{\addperiod\addspace}}%
+    \ifnameundef{editor}{%
+      \printtext[parens]{\printdateextra}%
+      \setunit{\addperiod\addspace}}%
+    }{\addspace\space}%
   % 編集者名
   \ifnameundef{editor}{}{%
     \printnames{editor}\usebibmacro{ed-eds:editor}%
     \printtext[parens]{\printdateextra}%
-    \ifnameundef{editora}{}{%
-      \printnames{editora}\usebibmacro{ed-eds:editora}%
-      \printtext[parens]{\printdateextra}%
-    }\setunit{\adddot\space}}%
+    \setunit{\adddot\space}}%
   % 表題
   \printfield{title}%
   \iffieldundef{subtitle}{}{%
