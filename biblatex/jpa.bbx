@@ -22,9 +22,9 @@ maxitems=999,%
 sorting=nyt,%
 urldate=long,%
 dateabbrev=false,%
-uniquelist=minyear,%
-uniquename=init,%
-uniqueprimaryauthor=true,%%
+%uniquelist=minyear,%
+%uniquename=false,%
+%uniqueprimaryauthor=true,%%
 }
 
 
@@ -64,13 +64,13 @@ uniqueprimaryauthor=true,%%
 \DeclareNameAlias{sortname}{family-given}
 
 
-% %%% 著者名の区別用
-% \DeclareUniquenameTemplate{
-%   \namepart[use=true, base=true]{prefix}
-%   \namepart[base=true]{family}
-%   \namepart[base=true]{giveni}
-%   \namepart{suffix}
-% }
+% %%% 著者名の区別を抑制
+\DeclareUniquenameTemplate{
+  \namepart[use=true, base=true]{prefix}
+  \namepart[base=true]{family}
+  \namepart[base=true]{giveni}
+  \namepart{suffix}
+}
 
 %%% 著者名のフォーマット
 %%% 日本語文献と英語文献で処理を変える
