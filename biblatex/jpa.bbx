@@ -462,8 +462,7 @@ dateabbrev=false,%
 
 %%% 巻号 %%%
 %%% ページ番号 %%%
-\DeclareFieldFormat[article,inproceedings,misc]{pages}{#1}
-\DeclareFieldFormat[inbook]{pages}{\printtext[parens]{pp.\addthinspace#1}}
+\DeclareFieldFormat{pages}{#1}
 
 %%% doi %%%
 \DeclareFieldFormat{doi}{%
@@ -784,7 +783,9 @@ dateabbrev=false,%
     \printfield{subtitle}%
   }%
   \usebibmacro{bookinfo}%
-  \printfield{pages}%
+  \printtext[parens]{\iffieldundef{edition}{}{%
+    \printfield{edition}\addcomma\space}%
+    pp.\space\printfield{pages}}%
   \ifthenelse{\boolean{japanese}}{%
     \nopunct\setunit{\addjspace}%
     \renewcommand*{\finentrypunct}{}%
@@ -792,6 +793,9 @@ dateabbrev=false,%
   \printlist{publisher}%
   \usebibmacro{finentry}%
 }
+
+%\DeclareFieldFormat[inbook]{pages}{\printtext[parens]{pp.\addthinspace#1}}
+
 
 %% v) 数巻にわたる書籍
 \DeclareBibliographyDriver{mvbook}{%
