@@ -520,10 +520,12 @@ dateabbrev=false,%
   % 版数
   \iffieldundef{edition}{%
   }{%
-    \printfield{edition}
+    \ifthenelse{\boolean{japanese}}{%
+    \printfield{edition}%
+    }{%
+    \mkbibparens{\printfield{edition}}}%
   }
   % 出版社
-  \newunit
   \ifthenelse{\boolean{japanese}}{%
     % 日本語文献の場合，最後のピリオドなし
     \renewcommand*{\finentrypunct}{}%
