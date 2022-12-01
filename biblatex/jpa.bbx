@@ -389,7 +389,7 @@ dateabbrev=false,%
   \ifthenelse{\boolean{japanese}}{%
   % 編集者名
     \ifnameundef{editor}{}{%
-      \usebibmacro{editor}\setunit{\addspace}}%
+      \printnames{editor}\usebibmacro{ed-eds:editor}\setunit{\addspace}}%
   % 書籍名
     \printfield{booktitle}%
     \iffieldundef{booksubtitle}{}{\printfield{booksubtitle}}%
@@ -776,13 +776,15 @@ dateabbrev=false,%
 \DeclareBibliographyDriver{inbook}{%
   \usebibmacro{begentry}%
   % 著者名，刊行年
-  \usebibmacro{author+year}\setunit{\addperiod\addspace}%
+  \printnames{author}%
+  \mkbibparens{\printdateextra}%
+  \setunit{\addperiod\addspace}%
   % 特定章名
   \printfield{title}%
   \iffieldundef{subtitle}{}{%
     \printfield{subtitle}%
   }%
-  \usebibmacro{bookinfo}%
+  \usebibmacro{bookinfo}\setunit{\addspace}%
   \printtext[parens]{\iffieldundef{edition}{}{%
     \printfield{edition}\addcomma\space}%
     pp.\space\printfield{pages}}%
@@ -793,9 +795,6 @@ dateabbrev=false,%
   \printlist{publisher}%
   \usebibmacro{finentry}%
 }
-
-%\DeclareFieldFormat[inbook]{pages}{\printtext[parens]{pp.\addthinspace#1}}
-
 
 %% v) 数巻にわたる書籍
 \DeclareBibliographyDriver{mvbook}{%
