@@ -1,7 +1,7 @@
 \ProvidesFile{jpa.cbx}[2022/11/30\space v1.0\space JPA biblatex citation style]
 
-
 \RequireCitationStyle{authoryear-comp}
+
 
 % et alが重複して表示されないようにする
 \DefineBibliographyStrings{english}{andothers={}}
@@ -10,7 +10,20 @@
 \DeclareDelimFormat{nameyeardelim}{\addcomma\space}
 
 % multiciteの区切り文字（文書全体で変更）
-\renewcommand*{\textcitedelim}{および}%
+\renewcommand*{\textcitedelim}{%
+  \iftoggle{bbx:engmode}{%
+    \iffinalcitedelim%
+      {\ifnumgreater{\value{textcitetotal}}{2}
+        {\iftextcitepunct{\finalandsemicolon}{\finalandcomma}}{}%
+      \addspace\bibstring{and}}%
+      {\iftextcitepunct{\addsemicolon}{\addcomma}}%
+    \space%
+  }{%
+  \printtext{，}%
+  \iffinalcitedelim
+    {\printtext{および}}{}}%
+  }
+
 
 % 引用ごとに言語を判断して処理
 \AtEveryCitekey{%

@@ -1,6 +1,13 @@
 \ProvidesFile{jpa.bbx}[2022/11/24\space v0.1\space 日本心理学会 2022年版文献スタイル]
+
 \RequireBibliographyStyle{authoryear}
 \urlstyle{same}% URLのフォントを本文に揃える
+
+%%% multiciteコマンド使用時の言語の設定
+\newtoggle{bbx:engmode}
+\settoggle{bbx:engmode}{false}
+\DeclareBibliographyOption[boolean]{engmode}{\settoggle{bbx:engmode}{#1}}
+
 
 %%% オプションの設定
 \ExecuteBibliographyOptions{%
@@ -17,9 +24,9 @@ urldate=long,%
 dateabbrev=false,%
 uniquelist=minyear,%
 uniquename=init,%
-uniqueprimaryauthor=true,
-usetranslator=true%
+uniqueprimaryauthor=true,%%
 }
+
 
 %%% ぶら下がりインデント幅 %%%
 \setlength{\bibhang}{2\zw}
