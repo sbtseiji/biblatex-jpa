@@ -9,6 +9,9 @@
 % 著者名と出版年の区切りはコンマ
 \DeclareDelimFormat{nameyeardelim}{\addcomma\space}
 
+% multiciteの区切り文字（文書全体で変更）
+\renewcommand*{\textcitedelim}{および}%
+
 % 引用ごとに言語を判断して処理
 \AtEveryCitekey{%
   \ifthenelse{\equal{\thefirstlistitem{language}}{japanese}}{%
