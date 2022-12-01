@@ -1,2 +1,12 @@
 .textlintrc
 prh.yml
+jpa-style.aux
+jpa-style.bbl
+jpa-style.bcf
+jpa-style.blg
+jpa-style.fdb_latexmk
+jpa-style.fls
+jpa-style.log
+jpa-style.run.xml
+jpa-style.synctex.gz
+jpa-style.toc
