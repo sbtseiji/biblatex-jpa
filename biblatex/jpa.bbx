@@ -499,9 +499,9 @@ dateabbrev=false,%
 \newbibmacro*{book}{%
   % 著者名
   \ifnameundef{author}{}{%
-    \usebibmacro{author+year}%
-    \ifthenelse{\boolean{japanese}}{}{%
-    \setunit{\addperiod\addspace}}}%
+    \printnames{author}\usebibmacro{ed-eds:author}%
+    \printtext[parens]{\printdateextra}%
+    \setunit{\addperiod\addspace}}%
   % 編集者名
   \ifnameundef{editor}{}{%
     \printnames{editor}\usebibmacro{ed-eds:editor}%
@@ -509,9 +509,7 @@ dateabbrev=false,%
     \ifnameundef{editora}{}{%
       \printnames{editora}\usebibmacro{ed-eds:editora}%
       \printtext[parens]{\printdateextra}%
-    }\setunit{\adddot\space}%
-    \ifthenelse{\boolean{japanese}}{}{%
-    \setunit{\addperiod\addspace}}}%
+    }\setunit{\adddot\space}}%
   % 表題
   \printfield{title}%
   \iffieldundef{subtitle}{}{%
