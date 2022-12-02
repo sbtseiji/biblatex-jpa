@@ -828,9 +828,13 @@ dateabbrev=false,%
     }%
   \usebibmacro{begentry}%
   % 著者・編集者
-  \ifnameundef{author}{}{\usebibmacro{author+year}}%
-  \ifnameundef{editor}{}{\usebibmacro{editor+year}}%
-  \setunit{\addperiod\addspace}%
+  \ifnameundef{author}{}{%
+    \printnames{author}%
+    \usebibmacro{ed-eds:author}%
+    \ifthenelse{\boolean{japanese}}{}{\adddot\addspace}%
+    \mkbibparens{\printdateextra}%
+    \setunit{\addperiod\addspace}%
+  }%
   % 書籍名
   \printfield{title}%
   \iffieldundef{subtitle}{}{%
@@ -838,19 +842,24 @@ dateabbrev=false,%
   }%
   % シリーズ編集者
   \usebibmacro{series-editor}%
-  \ifthenelse{\boolean{japanese}}{\setunit{\addjspace}}{\setunit{\addperiod\addspace}}%
+  \ifthenelse{\boolean{japanese}}{%
+    \setunit{\addspace}}{\setunit{\addperiod\addspace}}%
   \printfield{series}%
-  \iffieldundef{volume}{}{%
-    \ifthenelse{\boolean{japanese}}{%
-      \usebibmacro{volume:book}\addjspace%
-      \renewcommand*{\finentrypunct}{}%
-    }{%
-      \adddot\addspace\usebibmacro{volume:book}\newunit%
+  \ifthenelse{\iffieldundef{volume}\AND\iffieldundef{number}}{%
+    \ifthenelse{\boolean{japanese}}{\addjspace}{}%
+  }{%
+    \iffieldundef{volume}{}{%
+      \ifthenelse{\boolean{japanese}}{%
+        \usebibmacro{volume:book}\addjspace%
+        \renewcommand*{\finentrypunct}{}%
+      }{%
+        \adddot\addspace\usebibmacro{volume:book}\newunit%
+      }%
+    }%
+    \iffieldundef{number}{}{%
+      \printfield{number}\addjspace%
     }%
   }%
-  \iffieldundef{number}{}{%
-    \printfield{number}\addjspace%
-  }
   \printlist{publisher}%
   \usebibmacro{finentry}%
 }
