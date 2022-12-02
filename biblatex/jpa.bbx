@@ -22,6 +22,7 @@ maxitems=999,%
 sorting=nyt,%
 urldate=long,%
 dateabbrev=false,%
+useorigauthor=true,
 %uniquelist=minyear,%
 %uniquename=true,%
 %uniqueprimaryauthor=true,%%
@@ -143,6 +144,7 @@ dateabbrev=false,%
     }%
   }%
 }
+
 
 %%% 文献リストでは et al. を使用しない
 %\DefineBibliographyStrings{english}{andothers={}}
@@ -541,24 +543,22 @@ dateabbrev=false,%
 \newbibmacro*{translatedbook}{%
   \ifthenelse{\boolean{japanese}}{% 日本語文献
     \ifnameundef{origauthor}{}{%
-      \renewcommand*{\revsdnamepunct}{\addcomma\space}%
-      \printnames{origauthor}\setunit{\addperiod\addspace}%
+      \renewcommand{\revsdnamepunct}{\addcomma\space}%
+      \printnames[family-given]{origauthor}\setunit{\addperiod\addspace}%
       \usebibmacro{date+extradate}\adddot\space%
       \printfield[emph]{origtitle}\setunit*{\adddot\space}%
       \printlist{origpublisher}\setunit*{\adddot\space}%
       \printtext{\\(}%
+      \setboolean{japanese}{false}%
       \usebibmacro{author}%
       \addspace\space\newunit%
-      \ifnameundef{editor}{}{%
-        \printnames{editor}%
-        \usebibmacro{translation:editortype}%
-      }%
-        \usebibmacro{translator}%
-        \ifnameundef{translatora}{}{\addspace\space}\usebibmacro{translatora}%
-        \usebibmacro{date+extradate}\setunit*{\addperiod\addspace}%
-        \printfield{title}%
-        \iffieldundef{subtitle}{}{%
-        \printfield{subtitle}%
+      \setboolean{japanese}{true}%
+      \usebibmacro{translator}%
+      \ifnameundef{translatora}{}{\addspace\space}\usebibmacro{translatora}%
+      \usebibmacro{date+extradate}\setunit*{\addperiod\addspace}%
+      \printfield{title}%
+      \iffieldundef{subtitle}{}{%
+      \printfield{subtitle}%
       }%
       \setunit*{\addjspace}%
       \printlist{publisher}%
@@ -610,10 +610,13 @@ dateabbrev=false,%
 %%% 翻訳書（日本語訳）%%%
 \newbibmacro*{translatedbook:japanese}{%
   \usebibmacro{related:init}%
-  \usebibmacro{related}%
+  \setboolean{japanese}{false}%
+  \renewcommand*{\revsdnamepunct}{\addcomma\space}%
+  \usebibmacro{related}\setunit{\addperiod}%
   \printtext{\\(}%
-  \usebibmacro{author}%
+  \printnames{author}%
   \addspace\space\newunit%
+  \setboolean{japanese}{true}%
   \usebibmacro{translator}%
   \ifnameundef{translatora}{}{%
     \printnames{translatora}%
@@ -674,7 +677,7 @@ dateabbrev=false,%
   \usebibmacro{related:init}%
   % 著者名
   \ifnameundef{author}{}{%
-    \printnames{author}%
+    \usebibmacro*{author}%
     \usebibmacro{ed-eds:author}%
     \printtext[parens]{\printdateextra}%
     \setunit{\adddot\addspace}}%
