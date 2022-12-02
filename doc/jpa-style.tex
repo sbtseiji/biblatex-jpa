@@ -6,8 +6,8 @@
 \makeatletter
 \preto{\@verbatim}{\topsep=1\zh \partopsep=1\zh }
 \makeatother
-\newcommand{\bibentry}{\noindent\textbf{■ bibエントリ}}
-\newenvironment{mihon}{\textbf{出力結果の見本}\newline\begin{minipage}{\textwidth}\small\hangindent=2\zw\vspace{1\zh}}{\end{minipage}\vspace{2\zh}}
+\newcommand{\bibentry}{\vspace{1\zh}\noindent\textbf{■ bibエントリ}}
+\newenvironment{mihon}{\textbf{出力結果}\newline\begin{minipage}{\textwidth}\small\hangindent=2\zw\vspace{1\zh}}{\end{minipage}\vspace{2\zh}}
 
 \addbibresource{./sample.bib}
 
@@ -43,8 +43,8 @@ jpaスタイルファイルは，\texttt{.bbx}，\texttt{.cbx}，\texttt{.dbx}�
 論文などでjpaスタイルファイルを使用するには，プリアンブルに次のように指定してください。
 
 \begin{verbatim}
-    \documentclass[a4paper]{jlreq}
-    \usepackage[backend=biber,style=jpa]{biblatex}
+  \documentclass[a4paper]{jlreq}
+  \usepackage[backend=biber,style=jpa]{biblatex}
 \end{verbatim}
 
 
@@ -55,7 +55,7 @@ jpaスタイルファイルは，\texttt{.bbx}，\texttt{.cbx}，\texttt{.dbx}�
 
 
 \begin{verbatim}
-    \addbibresource{文献.bib}    
+  \addbibresource{文献.bib}    
 \end{verbatim}
 
 \subsection{文献リストの作成}
@@ -63,7 +63,7 @@ jpaスタイルファイルは，\texttt{.bbx}，\texttt{.cbx}，\texttt{.dbx}�
 文書に文献リストを追加するには，文献リストを追加したいところで次のように指定します。
 
 \begin{verbatim}
-    \printbibliography[title=引用文献]  
+  \printbibliography[title=引用文献]  
 \end{verbatim}
 
 
@@ -72,13 +72,13 @@ jpaスタイルファイルは，\texttt{.bbx}，\texttt{.cbx}，\texttt{.dbx}�
 ここまでの設定を含む，最小限の文書ファイルは次のようになります。ここでは，文書ファイルと同じ場所に文献ファイル「文献.bib」があるものとします。
 
 \begin{verbatim}
-    \documentclass[a4paper]{jlreq}
-    \usepackage[backend=biber,style=jpa]{biblatex}
-    \addbibresource{文献.bib}
-    \begin{document}
-    こんにちは
-    \printbibliography[title=引用文献]  
-    \end{document}
+  \documentclass[a4paper]{jlreq}
+  \usepackage[backend=biber,style=jpa]{biblatex}
+  \addbibresource{文献.bib}
+  \begin{document}
+  こんにちは
+  \printbibliography[title=引用文献]  
+  \end{document}
 \end{verbatim}
 
 \section{文献の引用}
@@ -88,13 +88,13 @@ jpaスタイルファイルは，\texttt{.bbx}，\texttt{.cbx}，\texttt{.dbx}�
 たとえば，「\texttt{中沢1978}」というキーをもつ文献を本文の一部として引用したい場合には，\texttt{\textbackslash{textcite}\{\}}コマンドを用いて次のように書きます。
 
 \begin{verbatim}
-    \textcite{中沢1978}によれば，これまでの研究において……
+  \textcite{中沢1978}によれば，これまでの研究において……
 \end{verbatim}
 
 これは，次のように表示されます。
 
 \begin{quoting}
-    \small
+  \small
   \textcite{中沢1978}によれば，これまでの研究において……
 \end{quoting}
 
@@ -103,25 +103,25 @@ jpaスタイルファイルは，\texttt{.bbx}，\texttt{.cbx}，\texttt{.dbx}�
 文末に括弧に入れて文献情報を示したい場合には，\texttt{\textbackslash{parencite}\{\}}コマンドを使用します。
 
 \begin{verbatim}
-    ……であることが示されている\parencite{藤永2013}。
+  ……であることが示されている\parencite{藤永2013}。
 \end{verbatim}
 
 これは，次のように表示されます。
 
 \begin{quoting}
-    \small
-    ……であることが示されている\parencite{藤永2013}。
+  \small
+  ……であることが示されている\parencite{藤永2013}。
 \end{quoting}
 
 複数の文献を一度に引用したい場合は，複数のキーをコンマ区切りで並べます。その際，文献の記載順序は自動的に著者名のアルファベット順にソートされます。
 
 \begin{verbatim}
-    ……ということである\parencite{坂本2013,松井2010}。
+  ……ということである\parencite{坂本2013,松井2010}。
 \end{verbatim}
 
 \begin{quoting}
-    \small
-    ……ということである\parencite{坂本2013,松井2010}。
+  \small
+  ……ということである\parencite{坂本2013,松井2010}。
 \end{quoting}
 
 なお，残念ながら，\texttt{\textbackslash{textcites}\{\}}などのマルチ引用コマンドにはまだ対応できていません。
@@ -130,12 +130,12 @@ jpaスタイルファイルは，\texttt{.bbx}，\texttt{.cbx}，\texttt{.dbx}�
 \texttt{\textbackslash{parencite}\{\}}コマンドでは，文献情報の前後に括弧が自動的に挿入されますが，そうしたくない場合もあるでしょう。その場合には，\texttt{\textbackslash{cite}\{\}}コマンドを使用することで，前後の括弧を非表示にできます。その場合，文献情報の前後の括弧は自分で入力する必要があります。
 
 \begin{verbatim}
-    ……ということである（\cite{坂本2013,松井2010}）。
+  ……ということである（\cite{坂本2013,松井2010}）。
 \end{verbatim}
 
 \begin{quoting}
-    \small
-    ……ということである（\cite{坂本2013,松井2010}）。
+  \small
+  ……ということである（\cite{坂本2013,松井2010}）。
 \end{quoting}
 
 \subsection{その他の引用方法}
@@ -146,12 +146,12 @@ Bib{\LaTeX}では，これ以外にもさまざまな引用コマンドが用意
 しかしBib{\LaTeX}では著者姓の重複のみがチェックされるため，このような区別ができません。同姓別著者で出版年まで同じというケースは非常に稀だと思われますので，jpaスタイルでは，著者名の曖昧さ回避は働かないように設定してあります。もし著者名の曖昧さ回避が必要な場面に遭遇した場合には，次のように\texttt{\textbackslash{cite*}\{\}}コマンドで文献の出版年のみを表示させ，著者名については手動で書くといった形で対処する必要があります。
 
 \begin{verbatim}
-    ……ということである（山田太郎, \cite*{山田太郎2021}; 山田次郎, \cite*{山田次郎2022}）。
+  ……ということである（山田太郎, \cite*{山田太郎2021}; 山田次郎, \cite*{山田次郎2022}）。
 \end{verbatim}
 
 \begin{quoting}
-    \small
-    ……ということである（山田太郎, 2021; 山田次郎, 2022）。
+  \small
+  ……ということである（山田太郎, 2021; 山田次郎, 2022）。
 \end{quoting}
 
 
@@ -168,17 +168,17 @@ Bib{\LaTeX}の\texttt{.bib}ファイルは，一部に仕様の変更や拡張�
 
 \begin{verbatim}
 @article{矢嶋2013,
-author = {矢嶋, 美保 and 長谷川, 晃},
-sortname = {Yajima, Miho and Hasegawa, Akira},
-date = {2013},
-title = {家族機能が中学生の社交不安に及ぼす影響},
-subtitle = {日本の親子のデータを用いた検討},
-journal = {感情心理学研究},
-volume = {27},
-number = {3},
-pages = {83-94},
-doi = {10.4092/jsre.27.3_83},
-language = {japanese},
+  author = {矢嶋, 美保 and 長谷川, 晃},
+  sortname = {Yajima, Miho and Hasegawa, Akira},
+  date = {2013},
+  title = {家族機能が中学生の社交不安に及ぼす影響},
+  subtitle = {日本の親子のデータを用いた検討},
+  journal = {感情心理学研究},
+  volume = {27},
+  number = {3},
+  pages = {83-94},
+  doi = {10.4092/jsre.27.3_83},
+  language = {japanese},
 \end{verbatim}
 
 \texttt{author}に著者情報，\texttt{title}に論文タイトルというように，それぞれのフィールドに対応する内容を入力していきます。日本語の文献の場合，著者名は「姓, 名」のようにコンマで区切って記載します。また，このままでは著者名のソートができませんので，\texttt{sortname}フィールドにローマ字表記で著者情報を入力します。このとき，著者名は「Yajima, Miho」と「Miho Yajima」のどちらの形式でも問題ありません。
@@ -231,14 +231,14 @@ language = {japanese},
 
 一般的な書籍では，文献情報を次のように入力します。
 \begin{verbatim}
-    @book{引用キー,
-      author    = {著者名},
-      sortname  = {著者名読み}, ※ 英語書籍では不要
-      date      = {刊行年},
-      title     = {書籍名},
-      subtitle  = {サブタイトル（省略可）},
-      publisher = {出版社},
-    }
+@book{引用キー,
+  author    = {著者名},
+  sortname  = {著者名読み}, ※ 英語書籍では不要
+  date      = {刊行年},
+  title     = {書籍名},
+  subtitle  = {サブタイトル（省略可）},
+  publisher = {出版社},
+}
 \end{verbatim}
     
 実際の入力例は次のようになります。
@@ -246,10 +246,10 @@ language = {japanese},
 \bibentry
 \begin{verbatim}
 @book{Clement2002,
-  author = {Clement, E.},
-  date = {2002},
-  title = {Cognitive Flexibility},
-  subtitle = {The Cornerstone of Learning},
+  author    = {Clement, E.},
+  date      = {2002},
+  title     = {Cognitive Flexibility},
+  subtitle  = {The Cornerstone of Learning},
   publisher = {Wiley},
 }
 \end{verbatim}
@@ -261,34 +261,34 @@ language = {japanese},
 \bibentry
 \begin{verbatim}
 @book{Rosen2015,
-    author = {Rosen, L. D. and Cheever, N. and Carrier, L. M.},
-    date = {2015},
-    title = {The Wiley Blackwell Handbook of Psychology, Technology and Society},
-    publisher = {Wiley},
+  author    = {Rosen, L. D. and Cheever, N. and Carrier, L. M.},
+  date      = {2015},
+  title     = {The Wiley Blackwell Handbook of Psychology, Technology and Society},
+  publisher = {Wiley},
 }
 \end{verbatim}
 
 
 \begin{mihon}
-    \nocite{Rosen2015} %<- fullciteでは著者名を全員表示できないので文献リストの内容をコピペ
-    Rosen, L. D., Cheever, N., \& Carrier, L. M. (2015). \emph{The Wiley Blackwell Handbook of Psychology, Technology and Society}. Wiley
+  \nocite{Rosen2015} %<- fullciteでは著者名を全員表示できないので文献リストの内容をコピペ
+  Rosen, L. D., Cheever, N., \& Carrier, L. M. (2015). \emph{The Wiley Blackwell Handbook of Psychology, Technology and Society}. Wiley
 \end{mihon}
     
 \bibentry
 \begin{verbatim}
 @book{一川2016,
-    author = {一川, 誠},
-    sortname = {ichikawa,makoto},
-    date = {2016},
-    title = {「時間の使い方」を科学する},
-    subtitle = {思考は10時から14時，記憶は16時から},
-    publisher = {PHP研究所},
-    language = {japanese},
+  author    = {一川, 誠},
+  sortname  = {Ichikawa, Makoto},
+  date      = {2016},
+  title     = {「時間の使い方」を科学する},
+  subtitle  = {思考は10時から14時，記憶は16時から},
+  publisher = {PHP研究所},
+  language  = {japanese},
 }
 \end{verbatim}
         
 \begin{mihon}
-    \fullcite{一川2016}
+  \fullcite{一川2016}
 \end{mihon}
     
 
@@ -296,165 +296,164 @@ language = {japanese},
 版の情報は\texttt{edition}フィールドに入力します。英語書籍の場合，版数は数字のみで構いません。日本語書籍の場合は，「第2版」のように入力します。
 
 \begin{verbatim}
-    @book{引用キー,
-      author    = {著者名},
-      sortname  = {著者名読み}, ※ 英語書籍では不要
-      date      = {刊行年},
-      title     = {書籍名},
-      subtitle  = {サブタイトル（省略可）},
-      edition   = {版数},
-      publisher = {出版社},
-    }
+@book{引用キー,
+  author    = {著者名},
+  sortname  = {著者名読み}, ※ 英語書籍では不要
+  date      = {刊行年},
+  title     = {書籍名},
+  subtitle  = {サブタイトル（省略可）},
+  edition   = {版数},
+  publisher = {出版社},
+}
 \end{verbatim}
 
 
 \bibentry
 \begin{verbatim}
 @book{APA2013,
-    author = {{American Psychiatric Association}},
-    date = {2013},
-    title = {Diagnostic and statistical manual of mental disorders},
-    edition = {5}, 
-    publisher = {American Psychiatric Association},
+  author    = {{American Psychiatric Association}},
+  date      = {2013},
+  title     = {Diagnostic and statistical manual of mental disorders},
+  edition   = {5}, 
+  publisher = {American Psychiatric Association},
 }
 \end{verbatim}
 
 
 
 \begin{mihon}
-    \fullcite{APA2013}
+  \fullcite{APA2013}
 \end{mihon}
 
 \bibentry
 \begin{verbatim}
 @book{長谷川2016,
-    author = {長谷川, 寿一 and 東條, 正城 and 大島, 尚 and 丹野, 義彦 and 廣中, 直行},
-    sortname = {Toshikazu Hasegawa and Masaki Tojo and Takashi Ohshima and 
-              Yoshihiko Tanno and Naoyuki Hironaka},
-    date = {2016},
-    title = {はじめて出会う心理学},
-    edition = {第3版}, 
-    publisher = {有斐閣},
-    language = {japanese},
+  author    = {長谷川, 寿一 and 東條, 正城 and 大島, 尚 and 丹野, 義彦 and 廣中, 直行},
+  sortname  = {Toshikazu Hasegawa and Masaki Tojo and Takashi Ohshima and 
+            Yoshihiko Tanno and Naoyuki Hironaka},
+  date      = {2016},
+  title     = {はじめて出会う心理学},
+  edition   = {第3版}, 
+  publisher = {有斐閣},
+  language  = {japanese},
   }
 \end{verbatim}
         
 \begin{mihon}
-    \nocite{長谷川2016}%
-    長谷川 寿一・東條 正城・大島 尚・丹野 義彦・廣中 直行(2016). はじめて出会う心理学 第3版 有斐閣
+  \nocite{長谷川2016}%
+  長谷川 寿一・東條 正城・大島 尚・丹野 義彦・廣中 直行(2016). はじめて出会う心理学 第3版 有斐閣
 \end{mihon}
 
 \subsubsection{編集書}
 英語書籍の場合，編集者はEd.（単数）またはEds.（複数）と省略表記するのがルールですが，単数と複数の区別はBib{\LaTeX}により自動的に処理されます。また，日本語の編集書では，編集者の他に監修者の名前が書かれていることがあります。その場合，監修者の名前を\texttt{author}フィールドに，編集者の名前は\texttt{editor}フィールドに入力します。さらに，\texttt{authortype}フィールドに監修者の役割（監修）を入力します。なお，その際，\texttt{sortname}フィールドには監修者名も含めて入力します。
 
 \begin{verbatim}
-    @book{引用キー,
-      author    = {監修者名}, ※ 監修者がいなければ省略
-      authortype= {役割}, ※ 監修者がいなければ省略
-      editor    = {編集者名},
-      sortname  = {編著者名読み}, ※ 英語書籍では不要
-      date      = {刊行年},
-      title     = {書籍名},
-      subtitle  = {サブタイトル（省略可）},
-      edition   = {版数}, ※ なければ省略
-      publisher = {出版社},
-    }
+@book{引用キー,
+  author     = {監修者名}, ※ 監修者がいなければ省略
+  authortype = {役割}, ※ 監修者がいなければ省略
+  editor     = {編集者名},
+  sortname   = {編著者名読み}, ※ 英語書籍では不要
+  date       = {刊行年},
+  title      = {書籍名},
+  subtitle   = {サブタイトル（省略可）},
+  edition    = {版数}, ※ なければ省略
+  publisher  = {出版社},
+}
 \end{verbatim}
 
 \bibentry
 \begin{verbatim}
 @book{Osaka2007,
-  editor = {Osaka, N. and Rentschler, I. and Biederman, I.},
-  title = {Object recognition, attention, and action},
-  date = {2007},
+  editor    = {Osaka, N. and Rentschler, I. and Biederman, I.},
+  title     = {Object recognition, attention, and action},
+  date      = {2007},
   publisher = {Springer},
 }
 \end{verbatim}
 
 \begin{mihon}
-    \nocite{Osaka2007}%
-    Osaka, N., Rentschler, I., \& Biederman, I. (Eds.) (2007). \emph{Object recognition, attention, and action}. Springer.
+  \nocite{Osaka2007}%
+  Osaka, N., Rentschler, I., \& Biederman, I. (Eds.) (2007). \emph{Object recognition, attention, and action}. Springer.
 \end{mihon}
 
 \bibentry
 \begin{verbatim}
 @book{堀2009,
-    author = {堀, 洋道},
-    authortype = {監修},
-    sortname = {Hori, Hiromichi and Yoshida, fujio and Matsui, yutaka and 
-             Miyamoto, Sosuke},
-    editor = {吉田, 富二雄 and 松井, 豊 and 宮本, 聡介},
-    date = {2009},
-    title = {新編 社会心理学},
-    edition = {改訂版},
-    publisher = {福村出版},
-    language = {japanese},
+  author     = {堀, 洋道},
+  authortype = {監修},
+  sortname   = {Hori, Hiromichi and Yoshida, Fujio and Matsui, Yutaka and 
+            Miyamoto, Sosuke},
+  editor     = {吉田, 富二雄 and 松井, 豊 and 宮本, 聡介},
+  date       = {2009},
+  title      = {新編 社会心理学},
+  edition    = {改訂版},
+  publisher  = {福村出版},
+  language   = {japanese},
 }  
 \end{verbatim}
 
 \begin{mihon}
-    \nocite{堀2009}%
-    堀 洋道(監修) 吉田 富二雄・松井 豊・宮本 聡介(編)(2009). 新編 社会心理学 改訂版　福村出版
+  \nocite{堀2009}%
+  堀 洋道(監修) 吉田 富二雄・松井 豊・宮本 聡介(編)(2009). 新編 社会心理学 改訂版　福村出版
 \end{mihon}
 
 \subsubsection{編集書中の特定章}
 編集書の中の特定の章のみを引用する場合，\texttt{@inbook}タイプを使用して，章の著者，刊行年，章のタイトル，編集者，書籍名，ページ範囲，出版社を記載します。タイトルおよび書籍タイトルには，サブタイトルも設定可能です。
 
 \begin{verbatim}
-    @inbook{引用キー,
-      author    = {著者名}, 
-      sortname  = {著者名読み}, ※ 英語書籍では不要
-      date      = {刊行年},
-      title     = {章のタイトル},
-      booktitle = {書籍のタイトル},
-      editor    = {編集者名},
-      pages     = {ページ範囲}, 
-      publisher = {出版社},
-    }
+@inbook{引用キー,
+  author    = {著者名}, 
+  sortname  = {著者名読み}, ※ 英語書籍では不要
+  date      = {刊行年},
+  title     = {章のタイトル},
+  booktitle = {書籍のタイトル},
+  editor    = {編集者名},
+  pages     = {ページ範囲}, 
+  publisher = {出版社},
+}
 \end{verbatim}
 
 
 \bibentry
 \begin{verbatim}
 @inbook{Morioka2018,
-    author = {Morioka, M.},
-    date = {2018},
-    title = {On the constitution of self-experience in the psychotherapeutic 
-          dialogue},
-    booktitle = {Handbook of Dialogical Self Theory and Psychotherapy},
-    booksubtitle = {Bridging Psychotherapeutic and Cultural Traditions},
-    editor = {A. Konopka and H. J. M. Hermans and M. M. Gonçalves},
-    pages = {206-219},
-    publisher = {Routledge},
+  author       = {Morioka, M.},
+  date         = {2018},
+  title        = {On the constitution of self-experience in the psychotherapeutic 
+        dialogue},
+  booktitle    = {Handbook of Dialogical Self Theory and Psychotherapy},
+  booksubtitle = {Bridging Psychotherapeutic and Cultural Traditions},
+  editor       = {A. Konopka and H. J. M. Hermans and M. M. Gonçalves},
+  pages        = {206-219},
+  publisher    = {Routledge},
 }
 \end{verbatim}
 
 \begin{mihon}
-    \nocite{Morioka2018}%
-    Morioka, M. (2018). On the constitution of self-experience in the psychotherapeutic dialogue. In A. Konopka, H. J. M. Hermans, \& M. M. Gonçalves (Eds.), \emph{Handbook of Dialogical Self Theory and Psychotherapy: Bridging Psychotherapeutic and Cultural Traditions} (pp. 206–219). Routledge.
+  \nocite{Morioka2018}%
+  Morioka, M. (2018). On the constitution of self-experience in the psychotherapeutic dialogue. In A. Konopka, H. J. M. Hermans, \& M. M. Gonçalves (Eds.), \emph{Handbook of Dialogical Self Theory and Psychotherapy: Bridging Psychotherapeutic and Cultural Traditions} (pp. 206–219). Routledge.
 \end{mihon}
 
 
 \bibentry
 \begin{verbatim}
 @inbook{内藤2018,
-    author = {内藤, 美加},
-    sortname = {Naito, Mika},
-    date = {2018},
-    title = {記憶の発達と心的時間移動},
-    subtitle = {自閉スペクトラム症の未解決課題再考},
-    booktitle = {発達障害の精神病理I},
-    editor = {鈴木, 國文 and 内海, 健 and 清水, 光恵},
-    pages = {77-96},
-    publisher = {星和書店},
-    language = {japanese},
-  }
+  author    = {内藤, 美加},
+  sortname  = {Naito, Mika},
+  date      = {2018},
+  title     = {記憶の発達と心的時間移動},
+  subtitle  = {自閉スペクトラム症の未解決課題再考},
+  booktitle = {発達障害の精神病理I},
+  editor    = {鈴木, 國文 and 内海, 健 and 清水, 光恵},
+  pages     = {77-96},
+  publisher = {星和書店},
+  language  = {japanese},
+}
 \end{verbatim}
 
 \begin{mihon}
-    \nocite{内藤2018}%
-    内藤 美加 (2018). 記憶の発達と心的時間移動------自閉スペクトラム症の未解決課題再考------ 鈴
-木 國文・内海 健・清水 光恵 (編) 発達障害の精神病理 I (pp. 77–96) 星和書店
+  \nocite{内藤2018}%
+  内藤 美加 (2018). 記憶の発達と心的時間移動------自閉スペクトラム症の未解決課題再考------ 鈴木 國文・内海 健・清水 光恵 (編) 発達障害の精神病理 I (pp. 77–96) 星和書店
 \end{mihon}
 
 \subsubsection{数巻にわたる書籍}
@@ -462,24 +461,24 @@ language = {japanese},
 数巻にわたる書籍は，\texttt{mvbook}タイプを使用してエントリを作成します。刊行年が複数年にまたがる場合には，年数をスラッシュで区切って入力します。編集者の役割（監修など）がある場合は，\texttt{editortype}フィールドで指定します。また，巻数を\texttt{volumes}フィールドに入力します。
 
 \begin{verbatim}
-    @mvbook{引用キー,
-      author    = {著者名}, 
-      sortname  = {著者名読み}, ※ 英語書籍では不要
-      date      = {刊行年},
-      title     = {シリーズのタイトル},
-      volumes   = {巻数},
-      publisher = {出版社},
-    }
+@mvbook{引用キー,
+  author    = {著者名}, 
+  sortname  = {著者名読み}, ※ 英語書籍では不要
+  date      = {刊行年},
+  title     = {シリーズのタイトル},
+  volumes   = {巻数},
+  publisher = {出版社},
+}
 \end{verbatim}
 
 \bibentry
 \begin{verbatim}
 @mvbook{Freud1956,
-    author = {Freud, S.},
-    date = {1956/1974},
-    title = {Standard editions of complete psychological works of Sigmund Freud},
-    volumes = {1-24},
-    publisher = {Hogarth Press},
+  author    = {Freud, S.},
+  date      = {1956/1974},
+  title     = {Standard editions of complete psychological works of Sigmund Freud},
+  volumes   = {1-24},
+  publisher = {Hogarth Press},
 }
 \end{verbatim}
     
@@ -490,24 +489,384 @@ language = {japanese},
 \bibentry
 \begin{verbatim}
 @mvbook{野島2018,
-    editor = {野島, 一彦 and 繁桝, 算男},
-    editortype = {監修},
-    sortname = {nojima, kazuhiko and shigemasu, kazuo},
-    date = {2018/2020},
-    series = {公認心理師の基礎と実践},
-    volumes = {全23巻},
-    publisher = {遠見書房},
-    language = {japanese}
+  editor     = {野島, 一彦 and 繁桝, 算男},
+  editortype = {監修},
+  sortname   = {Nojima, Kazuhiko and Shigemasu, Kazuo},
+  date       = {2018/2020},
+  series     = {公認心理師の基礎と実践},
+  volumes    = {全23巻},
+  publisher  = {遠見書房},
+  language   = {japanese}
 }
 \end{verbatim}
     
 \begin{mihon}
-    \nocite{野島2018}
-    野島 一彦・繁桝 算男 (監修). (2018–2020). 公認心理師の基礎と実践 (全23巻) 遠見書房.
+  \nocite{野島2018}
+  野島 一彦・繁桝 算男 (監修). (2018–2020). 公認心理師の基礎と実践 (全23巻) 遠見書房.
 \end{mihon}
 
+\subsubsection{数巻にわたる書籍の特定の1巻}
+
+数巻にわたる書籍のうち，1巻のみを引用する場合は，エントリの作成方法には2とおりのパターンがあります。
+
+\paragraph{従来型の方法}
+従来型（Bib{\TeX}型）の方法に近いやり方は，シリーズ全体の情報とその巻の情報を\texttt{incollection}タイプのエントリとして作成するというものです。この場合，対象巻の著者・編者は\texttt{author}フィールドに，シリーズ全体の編集者は\texttt{editor}フィールドに入力します。
+
+引用する巻の著者役割が「編集者」である場合には，\texttt{authortype}フィールドに「\texttt{editor}」（外国語文献の場合）または「\texttt{編}」（日本語文献の場合）と入力します。また，シリーズ全体の編集者の役割が，「\texttt{editor}」，「\texttt{編}」以外である場合は，\texttt{editortype}フィールドにその役割を記入します。
+
+シリーズのタイトルは，\texttt{series}フィールドに入力します。
+
+\begin{verbatim}
+@incollection{引用キー,
+  author    = {巻著者名}, 
+  sortname  = {巻著者名読み}, ※ 英語書籍では不要
+  date      = {刊行年},
+  title     = {巻タイトル},
+  volume    = {巻数}, ※省略可
+  editor    = {シリーズ編集者},
+  series    = {シリーズ名},
+  publisher = {出版社},
+}
+\end{verbatim}
+
+
+\bibentry
+\begin{verbatim}
+@incollection{Lamb2015,
+  author     = {Lamb, M. E.},
+  authortype = {editor},
+  date       = {2015},
+  title      = {Socioemotional processes},
+  editor     = {R. M. Lerner},
+  editortype = {Series Ed.},
+  volume     = {3},
+  series     = {Handbook of child psychology and developmental science},
+  publisher  = {Wiley},
+}
+\end{verbatim}
+    
+\begin{mihon}
+  \fullcite{Lamb2015}
+\end{mihon}
+
+
+\bibentry
+\begin{verbatim}
+@incollection{浅野2020,
+  author     = {浅野, 倫子 and 横澤, 一彦},
+  authortype = {編},
+  sortname   = {Asano, Michiko and Yokosawa, Kazuhiko},
+  date       = {2020},
+  title      = {共感覚},
+  subtitle   = {統合の多様性},
+  editor     = {横澤, 一彦},
+  editortype = {監修},
+  series     = {シリーズ統合的認知},
+  publisher  = {勁草書房},
+  language   = {japanese},
+}
+\end{verbatim}
+    
+\begin{mihon}
+    \fullcite{浅野2020}
+\end{mihon}
+
+
+\paragraph{\texttt{related}フィールドを用いる方法}
+上記の方法とは別に，Bib{\LaTeX}の\texttt{related}フィールドを利用してエントリを作成する方法もあります。この場合，シリーズ全体の情報は\texttt{mvbook}のエントリとして作成し，その巻の情報については\texttt{book}タイプのエントリとして作成します。そして，その巻の\texttt{related}フィールドにシリーズの引用キーを，\texttt{relatedtype}に「\texttt{mvbook}」を指定します。
+
+この場合，\texttt{\textbackslash{textcite}\{\}}などの引用コマンドには\texttt{book}で作成したその巻の引用キーを使用します。するとこの書籍が引用された際，Bib\LaTeX{}は\texttt{related}フィールドから関連書籍の情報を取り出し，それを元にしてシリーズの情報を文献リストに記載します。
+
+\textbf{シリーズ全体についてのエントリ}
+
+\begin{verbatim}
+@mvbook{引用キー,
+  editor    = {シリーズ編集者名}, 
+  sortname  = {編集者名読み}, ※ この文献そのものを引用しないのであれば不要
+  date      = {刊行年}, ※ この文献そのものを引用しないのであれば不要
+  series    = {シリーズ名},
+  publisher = {出版社}, ※ この文献そのものを引用しないのであれば不要
+}
+\end{verbatim}
+
+\textbf{引用する巻についてのエントリ}
+
+\begin{verbatim}
+@book{引用キー,
+  editor    = {巻著者名}, 
+  sortname  = {巻著者名読み}, ※ 英語書籍では不要
+  date      = {刊行年},
+  title     = {巻タイトル},
+  publisher = {出版社},
+}
+\end{verbatim}
+
+
+実際には，たとえば次のような形でエントリを作成します。
+
+\bibentry
+\begin{verbatim}
+シリーズ全体
+@mvbook{Lerner:Handbook,
+  editor     = {R. M. Lerner},
+  editortype = {Series Ed.},
+  series     = {Handbook of Child Psychology and Developmental Science},
+}
+
+引用対象
+@book{Overton2015,
+  editor      = {W. F. Overton and P. C. M. Molenaar},
+  publisher   = {Wiley},
+  title       = {Theory and Method},
+  date        = {2015},
+  volume      = {1},
+  related     = {Lerner:Handbook},
+  relatedtype = {mvbook},
+}
+\end{verbatim}
+
+このエントリを\texttt{\textbackslash{textcite}\{Overton2015\}}として引用すると，この文献情報の文献リストにおける記載は次のようになります。
+
+\vspace{1\zh}
+\begin{mihon}
+  \fullcite{Overton2015}
+\end{mihon}
+
+日本語の書籍の場合も同様です。\newline
+
+\bibentry
+\begin{verbatim}
+シリーズ全体
+@mvbook{大山:心理学研究法,
+  editor     = {大山, 正},
+  editortype = {監修},
+  publisher  = {誠信書房},
+  series     = {心理学研究法},
+  language   = {japanese},
+
+引用対象の巻
+@book{箱田2012,
+  editor      = {箱田, 裕司},
+  sortname    = {Hakoda, Yuji},
+  date        = {2012},
+  title       = {認知},
+  publisher   = {誠信書房},
+  number      = {2},
+  language    = {japanese},
+  related     = {大山:心理学研究法},
+  relatedtype = {mvbook},
+}
+\end{verbatim}
+
+このエントリを\texttt{\textbackslash{textcite}\{箱田2012\}}として引用すると，この文献情報の文献リストにおける記載は次のようになります。
+
+\vspace{1\zh}
+\begin{mihon}
+  \fullcite{箱田2012}
+\end{mihon}
+
+\subsubsection{翻訳書}
+文献リストにおける翻訳書の表記の仕方は，日本語訳された書籍と他の外国語から英語に翻訳された書式とで大きく異なります\footnote{翻訳書では，本文中への引用形式も日本語書籍と英語書籍とで異なります。}が，Bib\LaTeX{}を使用すれば，適切な書式の選択は自動的に行われます。
+
+翻訳書の場合も，複数巻で構成されるシリーズの中から1冊を引用する場合と同様に，エントリの作成方法には従来型の方法と\texttt[{related}フィールドを用いた方法の2とおりがあります。
+
+\paragraph{従来型の方法}
+従来型の方法では，翻訳書の情報と原著の情報を1つの\texttt{book}エントリとして作成します。その際，翻訳者の名前は\texttt{translator}フィールドに入力します。日本語訳された書籍で，監訳者と訳者が別になっている場合には，\texttt{translator}フィールドに監訳者名を入力し，\texttt{translatortype}を「\texttt{監訳}」にしてください。監訳者以外の翻訳者名は，\texttt{translatora}フィールドに入力します。
+
+なおこの場合，\texttt{author}フィールドには，翻訳者ではなく原著者の名前を入力してください。日本語訳された書式の場合，\texttt{author}フィールドには原著者名をカタカナ表記で入力し，原語表記の原著者名は\texttt{origauthor}フィールドに入力します。
+
+翻訳書の出版年は\texttt{date}フィールド，原書の出版年は\texttt{origdate}フィールドを使用してください。日本語訳された書籍の場合には，\texttt{origtitle}（原書タイトル）と\texttt{origpublisher}（原書の出版社）の情報も必要です。
+
+\begin{verbatim}
+@book{引用キー,
+  author        = {原著者名}, ※ 日本語の翻訳書ではここはカタカナ
+  origauthor    = {原著者名}, ※ 原語表記（英訳書の場合は記載不要）
+  sortname      = {原著者名読み}, ※ 英訳書では不要
+  origdate      = {原書出版年},
+  origtitle     = {原書タイトル}, ※ 英訳書では不要
+  origpublisher = {原書出版社}, ※ 英訳書では不要
+  translator    = {翻訳者名},
+  date          = {翻訳書出版年},
+  title         = {翻訳書タイトル},
+  publisher     = {出版社},
+}
+\end{verbatim}
+
+実際の文献の例は次のとおりです。なお，これは英訳された書籍の例ですが，\texttt{sortname}フィールドを使用しています。これは，原著者名をvon Helmholtzの形で引用するために著者名の「von Helmholtz」の部分を\{\ \}でくくっているためです。この場合，そのままでは著者名順に文献をソートする際に「von Helmholtz」がキーワードとして用いられることになるのですが，\texttt{sortname}フィールドに\{\ \}を含まない形で著者名を記入することで，それを回避しているのです。
+
+なお，この場合には，本文中の引用部分は「\textcite{Helmholtz1925}」の形で表示されます。
+
+\bibentry
+\begin{verbatim}
+@book{Helmholtz1925,
+  author         = {{von Helmholtz}, H.},
+  sortname       = {von Helmholtz, H.},
+  origdate       = {1910},
+  translator     = {J. P. C. Southall},
+  translatortype = {Ed., \& Trans.},
+  date           = {1925},
+  title          = {Treatise on Physiological Optics},
+  volume         = {3},
+  publisher      = {Optical Society of America},
+}
+\end{verbatim}
+
+\vspace{1\zh}
+\begin{mihon}
+  \fullcite{Helmholtz1925}
+\end{mihon}
+
+日本語に翻訳された書籍の場合のエントリは次のようになります。この場合，本文中の引用部分は「\textcite{Izard1991}」のように表示されます。
+
+\bibentry
+\begin{verbatim}
+@book{Izard1991,
+  author         = {イザード, C. E.},
+  sortname       = {Izard, C. E.},
+  origauthor     = {Izard, C. E.},
+  origdate       = {1991},
+  origtitle      = {The psychology of emotions},
+  origpublisher  = {Plenum Press},
+  translator     = {荘厳, 舜哉},
+  translatortype = {監訳},
+  translatora    = {比較発達研究会},
+  date           = {1996},
+  title          = {感情心理学},
+  publisher      = {ナカニシヤ出版},
+  language       = {japanese},
+}
+\end{verbatim}
+
+\vspace{1\zh}
+\begin{mihon}
+  \fullcite{Izard1991}
+\end{mihon}
+
+\paragraph{\texttt{related}フィールドを用いる方法}
+翻訳書のエントリに\texttt{related}フィールドを使用する場合には，原書の情報と翻訳書の情報をそれぞれ別の\texttt{book}タイプのエントリとして作成し，翻訳書の\texttt{related}フィールドに原書の引用キーを入力します。また，これが翻訳書であることを示すために，\texttt{relatedtype}フィールドに「\texttt{translationof}」と入力してください。
+
+翻訳書のエントリでは，\texttt{author}フィールドには原書の著者名を，翻訳者の名前は\texttt{translator}フィールドに入力します。日本語の翻訳書の場合，\texttt{author}フィールドは原書の著者名をカタカナで入力してください。なお，\texttt{related}フィールドを使用する場合には，原書著者名の原語表記は\texttt{related}フィールドを介して取得されますので，\texttt{origauthor}フィールドに別途入力したりする必要はありません。
+
+\textbf{原書のエントリ}
+
+\begin{verbatim}
+@book{引用キー,
+  author    = {著者名}, 
+  sortname  = {著者名読み}, ※ この文献そのものを引用しないのであれば不要
+  date      = {刊行年},
+  title     = {書籍タイトル}, ※ 英訳書の原書の場合には不要
+  publisher = {出版社}, ※ 英訳書の原書の場合には不要
+}
+\end{verbatim}
+
+\textbf{翻訳書のエントリ}
+
+\begin{verbatim}
+@book{引用キー,
+  author    = {著者名}, 
+  sortname  = {著者名読み}, ※ この文献そのものを引用しないのであれば不要
+  date      = {刊行年},
+  title     = {書籍タイトル}, ※ 英訳書の原書の場合には不要
+  publisher = {出版社}, ※ 英訳書の原書の場合には不要
+}
+\end{verbatim}
+
+このタイプの文献を引用する場合は，翻訳書の引用キーを使用してください。たとえば，次の例では，原書の引用キーである「Katz1930」ではなく，翻訳書の引用キー「Katz1935」を使用して引用します。その場合，本文中の引用書式は「\textcite{Katz1935}」のようになります。
+
+\bibentry
+\begin{verbatim}
+原書のエントリ
+@book{Katz1930,
+  author      = {Katz, D.},
+  date        = {1930},
+}
+
+翻訳書のエントリ
+@book{Katz1935,
+  author      = {Katz, D.},
+  translator  = {R. B. MacLeod and C. W. Fox},
+  publisher   = {Kegan Paul},
+  title       = {The world of colour},
+  date        = {1935},
+  related     = {Katz1930},
+  relatedtype = {translationof},
+}
+\end{verbatim}
+
+\begin{mihon}
+\fullcite{Katz1935}
+\end{mihon}
+
+また，日本語訳された書籍の場合には次のようになります。英訳された書籍の場合と違い，日本語訳された書籍の場合には原書の情報をすべて表示する必要がありますので，原書のエントリにもタイトルや出版社などの情報をすべて記入します。この場合，文献の引用には翻訳書の引用キー「ローズ2008」を使用します。その際，本文中の引用書式は「\textcite{ローズ2008}」のようになります。
+
+\bibentry
+\begin{verbatim}
+原書のエントリ
+@book{Rosen2005,
+	author          = {Rosen, N. J.},
+	date            = {2005},
+	title           = {If only},
+	subtitle        = {How to turn regret into opportunity},
+	location        = {New York},
+	publisher       = {Broadway}
+}
+
+翻訳書のエントリ
+@book{ローズ2008,
+  author          = {ローズ, N. J.},
+  sortname        = {Rosen, N. J.},
+  date            = {2008},
+  translator      = {村田, 光二},
+  translatortype  = {監訳},
+  title           = {後悔を好機に変える},
+  subtitle        = {イフ・オンリーの心理学},
+  publisher       = {ナカニシヤ出版},
+  language        = {japanese},
+  related         = {Rosen2005},
+  relatedtype     = {translationof},
+}
+\end{verbatim}
+
+\begin{mihon}
+  \fullcite{ローズ2008}
+\end{mihon}
+
+\subsubsection{再版}
+『執筆・投稿の手びき』では，このタイプは英語書籍についてのみ記載されています。このタイプの文献は，\texttt{book}タイプのエントリに\texttt{origdate}と\texttt{origpublisher}を記入する形で作成します。
+
+
+\begin{verbatim}
+  @book{引用キー,
+    author        = {著者名}, 
+    date          = {刊行年},
+    title         = {書籍タイトル},
+    publisher     = {出版社},
+    origdate      = {原書刊行年},
+    origpublisher = {原書出版社},
+  }
+  \end{verbatim}
+  
+この場合の入力例は次のとおりです。この文献を引用する場合，本文中の引用形式は「\textcite{Adler1970}」のようになります。
+
+\bibentry
+\begin{verbatim}
+@book{Adler1970,
+  author        = {Adler, A.},
+  date          = {1970},
+  title         = {The education of children},
+  publisher     = {Gateway},
+  origdate      = {1930},
+  origpublisher = {George Allen \& Unwin},
+}
+\end{verbatim}
+
+\begin{mihon}
+  \fullcite{Adler1970}
+\end{mihon}
+
+\subsubsection{自費出版}
+『執筆・投稿の手びき』では，このタイプは日本語書籍についてのみ記載されています。手引きに記載されているように，このタイプは通常の書籍と同じ形式で出版社を（自費出版）とするだけですので，通常の書籍の場合と同様に\texttt{book}タイプのエントリとして作成し，出版社に（自費出版）と入力すれば大丈夫です。
+
+\subsection{逐次刊行物}
 \printbibliography[title=引用文献]
 \end{document}
-
-
-
