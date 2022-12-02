@@ -608,7 +608,7 @@ dateabbrev=false,%
 }
 
 %%% 翻訳書（日本語訳）%%%
-\newbibmacro*{translatedbook:japanese}{
+\newbibmacro*{translatedbook:japanese}{%
   \usebibmacro{related:init}%
   \usebibmacro{related}%
   \printtext{\\(}%
@@ -630,7 +630,7 @@ dateabbrev=false,%
 }
 
 %%% 翻訳書（英語訳）%%%
-\newbibmacro*{translatedbook:english}{
+\newbibmacro*{translatedbook:english}{%
   \renewcommand*{\finentrypunct}{}%
   \usebibmacro{related:init}%
   \usebibmacro{author}\printdelim{nameyeardelim}%
