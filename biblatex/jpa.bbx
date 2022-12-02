@@ -330,13 +330,13 @@ useorigauthor=true,
 
 %%% 翻訳者
 \renewbibmacro*{translator}{%
-  \printnames{translator}%
+  \printnames[family-given]{translator}%
   \usebibmacro{translatortype}%
   \setunit{\printdelim{nameyeardelim}}
 }%
 
 \newbibmacro*{translatora}{%
-  \printnames{translatora}%
+  \printnames[family-given]{translatora}%
   \usebibmacro{translatoratype}%
   \setunit{\printdelim{nameyeardelim}}
 }%
@@ -552,6 +552,7 @@ useorigauthor=true,
       \setboolean{japanese}{false}%
       \usebibmacro{author}%
       \addspace\space\newunit%
+      \renewcommand{\revsdnamepunct}{\space}%
       \setboolean{japanese}{true}%
       \usebibmacro{translator}%
       \ifnameundef{translatora}{}{\addspace\space}\usebibmacro{translatora}%
