@@ -48,9 +48,18 @@ useorigauthor=true,
     \setboolean{japanese}{true}%
     \renewcommand*{\newunitpunct}{}%
     \renewcommand*{\multinamedelim}{・}%
-    \renewcommand*{\finalnamedelim}{・}%
     \renewcommand*{\revsdnamepunct}{\addspace}%
     }{}%
+  }%
+}
+
+\DeclareDelimFormat[bib,biblist]{finalnamedelim}{%
+  \ifthenelse{\boolean{japanese}}{・}{%
+    \ifthenelse{\value{listcount}>\maxprtnames}{}{%
+      \ifthenelse{\value{liststop}>2}{%
+      \finalandcomma\addspace\&\space}{%
+      \addspace\&\space}%
+    }%
   }%
 }
 
@@ -897,6 +906,7 @@ useorigauthor=true,
   % doi
   \iffieldundef{doi}{}{%
     \setunit*{\adddot\addspace}%
+    \renewcommand{\finentrypunct}{}%
     \printfield{doi}%
   }
   \usebibmacro{finentry}%
