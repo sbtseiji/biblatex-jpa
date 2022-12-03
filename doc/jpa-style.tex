@@ -2,13 +2,14 @@
 \usepackage[block=par,backend=biber,style=../biblatex/jpa]{biblatex}
 \usepackage{etoolbox}
 \usepackage{quoting}
+\usepackage{url}
 \quotingsetup{vskip=1\zh}
 \makeatletter
 \preto{\@verbatim}{\topsep=1\zh \partopsep=1\zh }
 \makeatother
 \newcommand{\bibentry}{\vspace{1\zh}\noindent\textbf{■ bibエントリ}}
 \newenvironment{mihon}{\textbf{出力結果}\newline\begin{minipage}{\textwidth}\small\hangindent=2\zw\vspace{1\zh}}{\end{minipage}\vspace{2\zh}}
-
+\urlstyle{same}
 \addbibresource{./sample.bib}
 
 \title{jpa：日本心理学会指定書式風\\[.5\zh]Bib{\LaTeX}スタイル}
@@ -330,7 +331,7 @@ Bib{\LaTeX}の\texttt{.bib}ファイルは，一部に仕様の変更や拡張�
 @book{長谷川2016,
   author    = {長谷川, 寿一 and 東條, 正城 and 大島, 尚 and 丹野, 義彦 and 廣中, 直行},
   sortname  = {Toshikazu Hasegawa and Masaki Tojo and Takashi Ohshima and 
-            Yoshihiko Tanno and Naoyuki Hironaka},
+               Yoshihiko Tanno and Naoyuki Hironaka},
   date      = {2016},
   title     = {はじめて出会う心理学},
   edition   = {第3版}, 
@@ -382,7 +383,7 @@ Bib{\LaTeX}の\texttt{.bib}ファイルは，一部に仕様の変更や拡張�
   author     = {堀, 洋道},
   authortype = {監修},
   sortname   = {Hori, Hiromichi and Yoshida, Fujio and Matsui, Yutaka and 
-            Miyamoto, Sosuke},
+                Miyamoto, Sosuke},
   editor     = {吉田, 富二雄 and 松井, 豊 and 宮本, 聡介},
   date       = {2009},
   title      = {新編 社会心理学},
@@ -420,7 +421,7 @@ Bib{\LaTeX}の\texttt{.bib}ファイルは，一部に仕様の変更や拡張�
   author       = {Morioka, M.},
   date         = {2018},
   title        = {On the constitution of self-experience in the psychotherapeutic 
-        dialogue},
+                  dialogue},
   booktitle    = {Handbook of Dialogical Self Theory and Psychotherapy},
   booksubtitle = {Bridging Psychotherapeutic and Cultural Traditions},
   editor       = {A. Konopka and H. J. M. Hermans and M. M. Gonçalves},
@@ -577,6 +578,7 @@ Bib{\LaTeX}の\texttt{.bib}ファイルは，一部に仕様の変更や拡張�
 
 この場合，\texttt{\textbackslash{textcite}\{\}}などの引用コマンドには\texttt{book}で作成したその巻の引用キーを使用します。するとこの書籍が引用された際，Bib\LaTeX{}は\texttt{related}フィールドから関連書籍の情報を取り出し，それを元にしてシリーズの情報を文献リストに記載します。
 
+\vspace{1\zh}
 \textbf{シリーズ全体についてのエントリ}
 
 \begin{verbatim}
@@ -643,6 +645,7 @@ Bib{\LaTeX}の\texttt{.bib}ファイルは，一部に仕様の変更や拡張�
   publisher  = {誠信書房},
   series     = {心理学研究法},
   language   = {japanese},
+}
 
 引用対象の巻
 @book{箱田2012,
@@ -668,7 +671,7 @@ Bib{\LaTeX}の\texttt{.bib}ファイルは，一部に仕様の変更や拡張�
 \subsubsection{翻訳書}
 文献リストにおける翻訳書の表記の仕方は，日本語訳された書籍と他の外国語から英語に翻訳された書式とで大きく異なります\footnote{翻訳書では，本文中への引用形式も日本語書籍と英語書籍とで異なります。}が，Bib\LaTeX{}を使用すれば，適切な書式の選択は自動的に行われます。
 
-翻訳書の場合も，複数巻で構成されるシリーズの中から1冊を引用する場合と同様に，エントリの作成方法には従来型の方法と\texttt[{related}フィールドを用いた方法の2とおりがあります。
+翻訳書の場合も，複数巻で構成されるシリーズの中から1冊を引用する場合と同様に，エントリの作成方法には従来型の方法と\texttt{related}フィールドを用いた方法の2とおりがあります。
 
 \paragraph{従来型の方法}
 従来型の方法では，翻訳書の情報と原著の情報を1つの\texttt{book}エントリとして作成します。その際，翻訳者の名前は\texttt{translator}フィールドに入力します。日本語訳された書籍で，監訳者と訳者が別になっている場合には，\texttt{translator}フィールドに監訳者名を入力し，\texttt{translatortype}を「\texttt{監訳}」にしてください。監訳者以外の翻訳者名は，\texttt{translatora}フィールドに入力します。
@@ -747,6 +750,7 @@ Bib{\LaTeX}の\texttt{.bib}ファイルは，一部に仕様の変更や拡張�
 
 翻訳書のエントリでは，\texttt{author}フィールドには原書の著者名を，翻訳者の名前は\texttt{translator}フィールドに入力します。日本語の翻訳書の場合，\texttt{author}フィールドは原書の著者名をカタカナで入力してください。なお，\texttt{related}フィールドを使用する場合には，原書著者名の原語表記は\texttt{related}フィールドを介して取得されますので，\texttt{origauthor}フィールドに別途入力したりする必要はありません。
 
+\vspace{1\zh}
 \textbf{原書のエントリ}
 
 \begin{verbatim}
@@ -803,12 +807,12 @@ Bib{\LaTeX}の\texttt{.bib}ファイルは，一部に仕様の変更や拡張�
 \begin{verbatim}
 原書のエントリ
 @book{Rosen2005,
-	author          = {Rosen, N. J.},
-	date            = {2005},
-	title           = {If only},
-	subtitle        = {How to turn regret into opportunity},
-	location        = {New York},
-	publisher       = {Broadway}
+  author    = {Rosen, N. J.},
+  date      = {2005},
+  title     = {If only},
+  subtitle  = {How to turn regret into opportunity},
+  location  = {New York},
+  publisher = {Broadway}
 }
 
 翻訳書のエントリ
@@ -836,15 +840,15 @@ Bib{\LaTeX}の\texttt{.bib}ファイルは，一部に仕様の変更や拡張�
 
 
 \begin{verbatim}
-  @book{引用キー,
-    author        = {著者名}, 
-    date          = {刊行年},
-    title         = {書籍タイトル},
-    publisher     = {出版社},
-    origdate      = {原書刊行年},
-    origpublisher = {原書出版社},
-  }
-  \end{verbatim}
+@book{引用キー,
+  author        = {著者名}, 
+  date          = {刊行年},
+  title         = {書籍タイトル},
+  publisher     = {出版社},
+  origdate      = {原書刊行年},
+  origpublisher = {原書出版社},
+}
+\end{verbatim}
   
 この場合の入力例は次のとおりです。この文献を引用する場合，本文中の引用形式は「\textcite{Adler1970}」のようになります。
 
@@ -868,5 +872,597 @@ Bib{\LaTeX}の\texttt{.bib}ファイルは，一部に仕様の変更や拡張�
 『執筆・投稿の手びき』では，このタイプは日本語書籍についてのみ記載されています。手引きに記載されているように，このタイプは通常の書籍と同じ形式で出版社を（自費出版）とするだけですので，通常の書籍の場合と同様に\texttt{book}タイプのエントリとして作成し，出版社に（自費出版）と入力すれば大丈夫です。
 
 \subsection{逐次刊行物}
+次に，学術論文など逐次刊行物の場合について説明します。
+
+\subsubsection{論文}
+論文の文献リスト形式については，著者名の区切りが異なることなどを除けば，文字書籍の場合ほど日本語と英語で違いがありません。論文は，\texttt{article}タイプのエントリーとして作成します。
+
+\begin{verbatim}
+@article{引用キー,
+  author  = {著者名}, 
+  date    = {刊行年},
+  title   = {表題},
+  journal = {雑誌名},
+  volume  = {巻数},
+  number  = {号数}, *巻をとおしてページ番号が付与されている場合は省略可
+  pages   = {ページ数},
+  doi     = {doi}, *ない場合は省略
+}
+\end{verbatim}
+
+英語論文の場合のエントリは次のようになります。
+
+\bibentry
+\begin{verbatim}
+@article{Takahashi2017,
+  author  = {Takahashi, N. and Isaka, Y. and Yamamoto, T. and Nakamura, T.},
+  date    = {2017},
+  title   = {Vocabulary and Grammar Differences Between Deaf and Hearing 
+             Students},
+  journal = {Journal of Deaf Studies and Deaf Education},
+  volume  = {22},
+  number  = {1},
+  pages   = {88-104},
+  doi     = {10.1093/deafed/enw055},
+}
+\end{verbatim}
+
+\begin{mihon}
+  \nocite{Takahashi2017}
+  Takahashi, N., Isaka, Y., Yamamoto, T., \& Nakamura, T. (2017). Vocabulary and Grammar Differences Between Deaf and Hearing Students. \emph{Journal of Deaf Studies and Deaf Education, 22} (1),
+88–104. \url{https://doi.org/10.1093/deafed/enw055}
+\end{mihon}
+
+\begin{mihon}
+  \nocite{Takahashi2017}
+\end{mihon}
+日本語論文の場合も，文献エントリは同じ形です。
+
+\bibentry
+\begin{verbatim}
+@article{川上2019,
+  author   = {川上, 直秋},
+  sortname = {Kawakami, Naoaki},
+  date     = {2019},
+  title    = {指先が変える単語の意味},
+  subtitle = {スマートフォン使用と単語の感情価の関係},
+  journal  = {心理学研究},
+  volume   = {91},
+  number   = {1},
+  pages    = {23-33},
+  doi      = {10.4992/jjpsy.91.18060},
+  language = {japanese},
+} 
+\end{verbatim}
+
+\begin{mihon}
+  \fullcite{川上2019}
+\end{mihon}
+
+なお，2022年版の書式では，APAスタイルの第7版に合わせ，著者名を最大20人まで記載することになりました。著者が20人を超える場合は，19人まで名前を記載したのち，「\ldots」で途中を省略して最後の著者名を書くというのがルールです。
+連名著者が20人を超える場合というのはそうそうないと思いますが，jpaスタイルではこの書式にそって，エントリに含まれる著者数が20を超える場合に20人目以降の著者名を自動的に「\dots」で省略して表示するようにしてあります。実際に著者名が20名を超える論文の例を見つけることができなかったので，架空の文献を例に見てみましょう。
+
+\bibentry
+\begin{verbatim}
+  @article{Wiskunde2019,
+  author   = {Wiskunde, B. and Arslan, M. and Fischer, P. and Nowak, L. and 
+              Van den Berg, O. and Coetzee, L. and Juárez, U. and 
+              Riyaziyyat, E. and Wang, C. and Zhang, I. and Li, P. and 
+              Yang, R. and Kumar, B. and Xu, A. and Martinez, R. and  
+              McIntosh, V. and Ibáñez, L. M. and Mäkinen, G. and Virtanen, E. 
+              and Simisola Kristine and Neasa Méabh and Sebastião Moana 
+              and Kamala Livia and Bruno Céleste and Kovács, A.},
+  date     = {2019},
+  journal  = {Journal of Improbable Mathematics},
+  title    = {Indie pop rocks mathematics},
+  subtitle = {Twenty One Pilots, Nicolas Bourbaki, and the empty set},
+  volume          = {27},
+  number   = {1},
+  pages    = {1935-1968},
+  doi      = {10.0000/3mp7y-537},
+}
+\end{verbatim}
+
+
+\begin{mihon}
+  \nocite{Wiskunde2019}
+  Wiskunde, B., Arslan, M., Fischer, P., Nowak, L., Van den Berg, O., Coetzee, L., Juárez, U., Riyaziyyat, E., Wang, C., Zhang, I., Li, P., Yang, R., Kumar, B., Xu, A., Martinez, R., McIntosh, V., Ibáñez, L. M., Mäkinen, G., Virtanen, E., ... Kovács, A. (2019). Indie pop rocks mathematics: Twenty One Pilots, Nicolas Bourbaki, and the empty set. \emph{Journal of Improbable Mathematics, 27} (1), 1935–1968. https://doi.org/10.0000/3mp7y-537
+\end{mihon}
+
+日本語の場合についても，見ておきます。こちらも架空の文献です。
+
+\bibentry
+\begin{verbatim}
+  @article{大谷2022,
+  author   = {大谷, 美貴 and 岡田, あかり and 丸山, 直樹 and 松井, 奈緒美 and
+              眞鍋, 久美子 and 坂本, 諒 and 山本, 淳一 and 西村, 一也 and 春日, 麻衣 
+              and 清水, 真 and 阿部, 竜太 and 島田, 悠 and 谷口, 幸治 and 
+              上田, 久美子 and 小林, 里恵 and 岡本, 有香 and 白井, 太郎 and 
+              鈴木, 敏行 and 佐々木, 智恵美 and 山田, 徹 and 多田, 剛 and 
+              中島, 奈津子 and 谷口, 昭彦 and 野田, 愛 and 高木, 由紀子},
+  sortname = {Oya, Miki and Okada, Akari and Maruyama, Naoki and Matsui, Naomi 
+              and Manabe, Kumiko and Sakamoto, Ryo and Yamamoto, Junichi and 
+              Nishimura, Kazuya and Kasuga, Mai and Shimizu, Makoto and 
+              Abe, Ryuta and Shimada, Yu and Taniguchi, Koji and Ueda, Kumiko 
+              and Kobayashi, Satoe and Okamoto, Yuka and Shirai, Tarou and 
+              Suzuki, Toshiyuki and Sasaki, Chiemi and Yamada, Toru and 
+              Tada, Tsuyoshi and Nakajima, Natsuko and Taniguchi, Akihiko 
+              and Noda, Ai and Takagi, Yukiko},
+  date     = {2022},
+  title    = {マジカルナンバー20},
+  subtitle = {20を超えると何かが起こる},
+  journal  = {架空心理学研究},
+  volume   = {32},
+  number   = {3},
+  pages    = {80-89},
+  doi      = {35.3582/fmp-2pahm},
+  language = {japanese},
+}
+\end{verbatim}
+
+\begin{mihon}
+  \nocite{大谷2022}
+  大谷 美貴・岡田 あかり・丸山 直樹・松井 奈緒美・眞鍋 久美子・坂本 諒・山本 淳一・西村 一也・ 春日 麻衣・清水 真・阿部 竜太・島田 悠・谷口 幸治・上田 久美子・小林 里恵・岡本 有香・白 井 太郎・鈴木 敏行・佐々木 智恵美 ... 高木 由紀子 (2022). マジカルナンバー 20------20を超えると何かが起こる------  架空心理学研究, \emph{32} (3), 80-89. https://doi.org/35.3582/fmp-2pahm
+\end{mihon}
+
+\subsubsection{年間に2冊以上刊行があるが巻数がない場合}
+これは日本語の場合に関してのみ指定があるタイプの文献です。『投稿・執筆の手びき』では分けて書かれていますが，巻数がない場合は\texttt{volume}フィールドが空欄になるだけで，あとは通常の\texttt{article}タイプのエントリと変わりません。
+
+\bibentry
+\begin{verbatim}
+  @article{齊藤2019,
+  author   = {齊藤, 慈子},
+  sortname = {Saito, Atsuko},
+  date     = {2019},
+  title    = {時に手を抜くイクメン，マーモセットのパパ},
+  subtitle = {38年間のトレンド},
+  journal  = {心理学ワールド},
+  number   = {86},
+  pages    = {25-26},
+  language = {japanese},
+}
+\end{verbatim}
+
+\begin{mihon}
+  \nocite{齊藤2019}
+  齊藤慈子(2019). 時に手を抜くイクメン，マーモセットのパパ------38年間のトレンド------ 心理学ワールド, No. 86, 25--26.
+
+\end{mihon}
+
+\subsubsection{年報・年鑑}
+年報や年鑑，白書などは，\texttt{report}タイプのエントリとして作成します。出版社名・発行機関名は，\texttt{institution}フィールドを使用します。巻数や号数がある場合は，\texttt{volume}フィールドや\texttt{number}フィールドを追加してください。
+
+\begin{verbatim}
+@report{引用キー,
+  author    = {著者名},
+  date      = {刊行年},
+  title     = {タイトル},
+  publisher = {出版社・発行機関},
+}
+\end{verbatim}
+
+\bibentry
+\begin{verbatim}
+@report{法務総合研究所2019,
+  author    = {法務総合研究所},
+  sortname  = {Houmusougoukenkyujo},
+  date      = {2019},
+  title     = {令和元年版 犯罪白書},
+  subtitle  = {平成の刑事政策},
+  publisher = {昭和情報プロセス},
+  language  = {japanese}
+}
+\end{verbatim}
+
+\begin{mihon}
+  \fullcite{法務総合研究所2019}  
+\end{mihon}
+
+\subsubsection{紀要，その他}
+日本語文献では，紀要について別立てで説明されていますが，これらは基本的に通常の論文の場合と同じです。\texttt{article}タイプのエントリとして作成します。
+
+\bibentry
+\begin{verbatim}
+@article{中道2019,
+  author    = {中道, 圭人},
+  sortname  = {Nakamichi, Keito},
+  date      = {2019},
+  title     = {幼児における他者の感情推測のための表情と身体的手がかりの利用},
+  journal   = {千葉大学教育学部研究紀要},
+  volume    = {67},
+  pages     = {285-292},
+  language  = {japanese},
+}
+\end{verbatim}
+
+\begin{mihon}
+  \nocite{中道2019}
+  中道 圭人 (2019). 幼児における他者の感情推測のための表情と身体的手がかりの利用　千葉大学教育学部研究紀要, \emph{67}, 285--292.
+\end{mihon}
+
+\subsection{オンライン資料}
+
+ここでは，オンライン資料を引用する際のエントリ作成方法について見ていきます。
+
+\subsubsection{刊行された冊子体がある場合}
+この場合のエントリは，通常の学術論文と同じです。\texttt{article}タイプの文献としてエントリを作成します。
+
+\subsubsection{オンライン早期公開}
+冊子体が刊行される前にオンラインで早期公開されているものについては，\texttt{article}タイプの文献としてエントリを作成し，\texttt{howpublished}フィールドに「Advance online publication」と入力します。また，\texttt{doi}フィールドにdoiを記載するのを忘れないでください。
+
+\begin{verbatim}
+@article{引用キー,
+  author       = {著者名}, 
+  date         = {刊行年},
+  title        = {表題},
+  journal      = {雑誌名},
+  volume       = {巻数},
+  number       = {号数}, *巻をとおしてページ番号が付与されている場合は省略可
+  pages        = {ページ数},
+  howpublished = {Advance online publication},
+  doi          = {doi},
+}
+\end{verbatim}
+
+\bibentry
+\begin{verbatim}
+@article{Yokoyama2020,
+  author       = {Yokoyama, T. and Kato, R. and Inoue, K. and Takeda, Y.},
+  date         = {2020},
+  title        = {Cuing Effects by Biologically and Behaviorally Relevant Symbolic 
+                  Cues},
+  journal      = {Japanese Psychological Research},
+  doi          = {10.1111/jpr.12318},
+  howpublished = {Advance online publication}
+}
+\end{verbatim}
+
+\begin{mihon}
+  \fullcite{Yokoyama2020}
+\end{mihon}
+
+\bibentry
+\begin{verbatim}
+@article{金政2021,
+  author       = {金政, 祐司 and 古村, 健太郎 and 浅野, 良輔 and 荒井, 崇史},
+  sortname     = {Yuji Kanemasa and Kentaro Komura and Ryosuke Asano and 
+                  Takashi Arai},
+  date         = {2021},
+  title        = {愛着不安は親密な関係内の暴力の先行要因となり得るのか?},
+  subtitle     = {恋愛関係と夫婦関係の縦断調査から},
+  journal      = {心理学研究},
+  doi          = {10.4992/jjpsy.92.20013},
+  howpublished = {Advance online publication},
+  language     = {japanese},
+}
+
+\end{verbatim}
+
+\begin{mihon}
+  \nocite{金政2021}
+  金政 祐司・古村 健太郎・浅野 良輔・荒井 崇史 (2021). 愛着不安は親密な関係内の暴力の先行要因となり得るのか？------恋愛関係と夫婦関係の縦断調査から------ 心理学研究 Advance online publication. https://doi.org/10.4992/jjpsy.92.20013
+\end{mihon}
+
+
+\subsubsection{プレプリントされている文献}
+プレプリントの文献を引用する場合は，\texttt{online}タイプのエントリを作成します。\texttt{online}タイプでは，\texttt{eprinttype}フィールドにアップロードサイト名を記載します。
+
+\begin{verbatim}
+@online{引用キー,
+  author     = {著者名}, 
+  date       = {刊行年},
+  title      = {表題},
+  eprinttype = {アップロードサイト名},
+  doi        = {doi},
+}
+\end{verbatim}
+  
+\bibentry
+\begin{verbatim}
+@online{Yoshimura2021,
+  author     = {Yoshimura, N. and Morimoto, K. and Murai, M. and Kihara, Y. and
+                Marmolejo-Ramos, F. and Kubik, V. and Yamada, Y.},
+  date       = {2021},
+  title      = {Age of smile},
+  subtitle   = {A cross-cultural replication report of Ganel and 
+                Goodale (2018)},
+  eprinttype = {PsyArXiv},
+  doi        = {10.31234/osf.io/dtx6}
+}
+\end{verbatim}
+
+\begin{mihon}
+  \nocite{Yoshimura2021}
+  Yoshimura, N., Morimoto, K., Murai, M., Kihara, Y., Marmolejo-Ramos, F., Kubik, V., \& Yamada, Y. (2021). \emph{Age of smile: A cross-cultural replication report of Ganel and Goodale (2018)}. PsyArXiv. https://doi.org/10.31234/osf.io/dtx6
+\end{mihon}
+
+\subsubsection{オンラインでのみ閲覧可能でdoiがある場合}
+オンラインでしか閲覧できない資料でdoiがあるものについては，通常の論文と同様に\texttt{article}タイプのエントリとして作成します。その際，必ず\texttt{doi}フィールドにdoiを記載してください。
+
+\bibentry
+\begin{verbatim}
+@article{Katahira2020,
+  author  = {Katahira, K. and Kunisato, Y. and Yamashita, Y. and Suzuki, S.},
+  date    = {2020},
+  title   = {Commentary: ``A robust data-driven approach identifies four  
+             personality types across four large data sets.''},
+  journal = {Frontiers in Big Data},
+  volume  = {3},
+  pages   = {8},
+  doi     = {10.3389/fdata.2020.00008},
+} 
+\end{verbatim}
+
+\begin{mihon}
+  \nocite{Katahira2020}
+  Katahira, K., Kunisato, Y., Yamashita, Y., \& Suzuki, S. (2020). Commentary: ``A robust data-driven approach identifies four personality types across four large data sets.'' \emph{Frontiers in Big Data, 3}, 8. https://doi.org/10.3389/fdata.2020.00008
+\end{mihon}
+
+\bibentry
+\begin{verbatim}
+  @article{矢嶋2013,
+  author   = {矢嶋, 美保 and 長谷川, 晃},
+  sortname = {Yajima, Miho and Hasegawa, Akira},
+  date     = {2013},
+  title    = {家族機能が中学生の社交不安に及ぼす影響},
+  subtitle = {日本の親子のデータを用いた検討},
+  journal  = {感情心理学研究},
+  volume   = {27},
+  number   = {3},
+  pages    = {83-94},
+  doi      = {10.4092/jsre.27.3_83},
+  language = {japanese},
+} 
+\end{verbatim}
+
+\begin{mihon}
+  \fullcite{矢嶋2013}
+\end{mihon}
+
+\subsubsection{オンラインでのみ閲覧可能で，doiがない場合}
+
+オンラインのみの資料でdoiがないものについては，\texttt{online}タイプのエントリとして作成し，\texttt{organization}フィールドにウェブサイト名を記載します。また，その資料のURLを\texttt{url}フィールドに，アクセス日時を\texttt{urldate}フィールドに記載します。\texttt{urldate}は\texttt{date}型の入力しか受け付けませんので，英語文献の場合も日本語文献の場合も\texttt{year-month-date}の形式で入力してください。
+
+\begin{verbatim}
+@online{引用キー,
+  author       = {著者名}, 
+  date         = {刊行年},
+  title        = {表題},
+  organization = {ウェブサイト名},
+  url          = {資料のURL},
+  urldate      = {アクセス日時},
+}
+\end{verbatim}
+   
+\bibentry
+\begin{verbatim}
+@online{Abrams2020,
+  author       = {Abrams, Z.},
+  date         = {2020},
+  title        = {Building a safe space in the pandemic},
+  organization = {American Psychological Association},
+  url          = {https://www.apa.org/topics/covid-19/pandemic-safe-space#},
+  urldate      = {2021-12-31}
+}
+\end{verbatim}
+
+\begin{mihon}
+  \fullcite{Abrams2020}
+\end{mihon}
+
+\bibentry
+\begin{verbatim}
+@online{日本心理学会2022,
+  author       = {日本心理学会},
+  sortname     = {Nihonshinrigakkai},
+  date         = {2022},
+  title        = {執筆・投稿の手びき2022年版},
+  organization = {日本心理学会},
+  url          = {https://psych.or.jp/manual/},
+  urldate      = {2022-10-25},
+  language     = {japanese},
+}
+\end{verbatim}
+
+\begin{mihon}
+  \fullcite{日本心理学会2022}
+\end{mihon}
+
+\subsection{その他}
+\subsubsection{学位論文}
+博士論文や修士論文など，学位論文は\texttt{thesis}タイプのエントリとして作成します。このタイプのエントリでは，\texttt{institution}フィールドに学位授与機関（大学）の名称，\texttt{type}フィールドに論文種別（修士論文，博士論文など）を記載します。
+
+\begin{verbatim}
+@online{引用キー,
+  author      = {著者名}, 
+  date        = {刊行年},
+  title       = {表題},
+  institution = {ウェブサイト名},
+  type        = {資料のURL},
+}
+\end{verbatim}
+    
+\bibentry
+\begin{verbatim}
+@thesis{Tsukamoto2015,
+  author      = {Tsukamoto, S.},
+  date        = {2015},
+  title       = {The Role of Psychological Essentialism in Intergroup Attitude 
+                 Formation},
+  institution = {Kyoto University},
+  type        = {Unpublished master's thesis}
+}
+\end{verbatim}
+
+\begin{mihon}
+  \fullcite{Tsukamoto2015}.
+\end{mihon}
+
+\bibentry
+\begin{verbatim}
+@thesis{向田2009,
+  author      = {向田, 久美子},
+  sortname    = {Mukaida, Kumiko},
+  date        = {2009},
+  title       = {語りに見るライフ・スクリプトの文化心理学的研究},
+  subtitle    = {文化圏間比較と世代間比較を通して},
+  institution = {白百合女子大学大学院},
+  type        = {博士論文},
+  language    = {japanese},
+}
+\end{verbatim}
+
+\begin{mihon}
+  \fullcite{向田2009}
+\end{mihon}
+
+\subsubsection{学会発表}
+学会発表は，\texttt{inproceedings}タイプのエントリとして作成します。予稿集や抄録などがある場合は，その名称を\texttt{booktitle}フィールドに，掲載ページ数を\texttt{pages}フィールドに記載します。それ以外の場合には，大会名を\texttt{eventtitle}フィールドに，開催地名を\texttt{location}フィールドに，発表形式を\texttt{type}フィールドに記載します。
+
+\vspace{1\zh}
+\noindent\textbf{予稿集などがある場合}
+\begin{verbatim}
+@inproceedings{引用キー,
+  author      = {著者名}, 
+  date        = {刊行年},
+  title       = {表題},
+  booktitle   = {ウェブサイト名},
+  pages       = {資料のURL},
+}
+\end{verbatim}
+
+\noindent\textbf{予稿集などがない場合}
+\begin{verbatim}
+@inproceedings{引用キー,
+  author     = {著者名}, 
+  date       = {発表年},
+  title      = {表題},
+  type       = {発表形式},
+  eventtitle = {大会名}
+  location   = {開催地名},
+}
+\end{verbatim}
+
+\bibentry
+\begin{verbatim}
+@inproceedings{Oe2016,
+  author     = {Oe, T. and Aoki, R. and Numazaki, M.},
+  date       = {2016},
+  title      = {Perceived causal attributions of body temperature increase
+                as a moderator of the effects of physical warmth on implicit 
+                associations of social warmth},
+  type       = {Poster presentation},
+  eventtitle = {The 17th Annual Meeting of the Society for Personality and Social 
+                Psychology},
+  location   = {San Diego, CA.}
+}
+\end{verbatim}
+
+\begin{mihon}
+  \nocite{Oe2016}
+  Oe, T., Aoki, R., \& Numazaki, M. (2016). \emph{Perceived causal attributions of body temperature increase as a moderator of the effects of physical warmth on implicit associations of social warmth} [Poster presentation]. The 17th Annual Meeting of the Society for Personality and Social Psychology, San Diego, CA.
+\end{mihon}
+
+\bibentry
+\begin{verbatim}
+@inproceedings{都築2018,
+  author    = {都築, 誉史 and 武田, 裕司 and 千葉, 元気},
+  sortname  = {Tsuzuki, Takashi and Takea, Yuji and Chiba, Genki},
+  date      = {2018},
+  title     = {認知資源が多肢選択意思決定における魅力効果に及ぼす影響},
+  subtitle  = {聴覚プローブ法を用いた実験的検討},
+  booktitle = {日本心理学会第82回大会発表論文集},
+  pages     = {493},
+  language  = {japanese}
+}
+\end{verbatim}
+
+\begin{mihon}
+  \nocite{都築2018} 
+  都築 誉史・武田 裕司・千葉 元気 (2018). 認知資源が多肢選択意思決定における魅力効果に及ぼす影響------聴覚プローブ法を用いた実験的検討------ 日本心理学会第82回大会発表論文集, 493.
+\end{mihon}
+
+\subsubsection{印刷中の論文}
+掲載されることは確定しているが未刊行の論文については，\texttt{article}タイプエントリの\texttt{date}フィールドを空欄にし，\texttt{pubstate}フィールドに「印刷中」など，現在の状態を記載します。
+
+\begin{verbatim}
+@article{引用キー,
+  author   = {著者名}, 
+  title    = {表題},
+  journal  = {雑誌名}
+  pubstate = {状態},
+}
+\end{verbatim}
+
+\bibentry
+\begin{verbatim}
+@article{OSeaghdha99,
+  author   = {O'Seaghdha, P. G.},
+  title    = {Across the great divide},
+  subtitle = {Proximate units at the lexical-phonological interface},
+  journal  = {Japanese Psychological Research},
+  pubstate = {in press},
+}
+\end{verbatim}
+
+\begin{mihon}
+  \fullcite{OSeaghdha99}.
+\end{mihon}
+
+\bibentry
+\begin{verbatim}
+@article{長谷川99,
+  author   = {長谷川,龍樹 and 多田, 奏恵 and 米満, 文哉 and 池田, 鮎美 and 
+              山田, 祐樹 and 高橋, 康介 and 近藤, 洋史},
+  sortname = {Ryuju Hasegawa and Kanae Tada and Fumiya Yonemitsu and Ayumi Ikeda 
+              and Yuki Yamada and Kohske Takahashi and Hirohito M. Kondo},
+  journal  = {心理学研究},
+  title    = {実証的研究の事前登録の現状と実践},
+  subtitle = {OSF事前登録チュートリアル},
+  pubstate = {印刷中},
+  language = {japanese},
+} 
+\end{verbatim}
+
+\begin{mihon}
+  \nocite{長谷川99}
+  長谷川 龍樹・多田 奏恵・米満 文哉・池田 鮎美・山田 祐樹・高橋 康介・近藤 洋史 (印刷中). 実証
+的研究の事前登録の現状と実践------OSF事前登録チュートリアル------　心理学研究
+\end{mihon}
+
+\subsubsection{新聞記事および雑誌記事の引用}
+新聞記事などを引用する場合は，\texttt{misc}（その他）タイプとしてエントリを作成します。発行日については，朝刊・夕刊などの区別を含め，\texttt{howpublished}フィールドに記載します。
+
+\begin{verbatim}
+@misc{引用キー,
+  author       = {著者名}, 
+  date         = {発行年},
+  title        = {資料表題},
+  journal      = {掲載紙（誌）名},
+  howpublished = {発行日・形態},
+  pages        = {掲載ページ}, 
+}
+\end{verbatim}
+
+\bibentry
+\begin{verbatim}
+@misc{サトウ2013,
+  author       = {サトウ, タツヤ},
+  sortname     = {Sato, Tatsuya},
+  date         = {2013},
+  title        = {ちょっとココロ学},
+  subtitle     = {悩み事 どうやって打開？},
+  journal      = {読売新聞},
+  howpublished = {7月8日夕刊},
+  pages        = {7},
+  language     = {japanese},
+} 
+\end{verbatim}
+\begin{mihon}
+  \fullcite{サトウ2013}
+\end{mihon}
+
+\clearpage
 \printbibliography[title=引用文献]
 \end{document}
+
