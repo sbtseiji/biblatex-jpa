@@ -915,8 +915,14 @@ useorigauthor=true,
 %% iii)年報・年鑑
 \DeclareBibliographyDriver{report}{%
   \usebibmacro{begentry}%
-  % 著者名，刊行年
-  \usebibmacro{author+year}\setunit{\addperiod\addspace}%
+  % 著者名
+  \ifnameundef{author}{% 著者名が書かれていない場合は機関名を表示
+    \printlist{institution}\addspace%
+  }{%
+    \printnames{author}\addspace%
+  }%
+  % 刊行年
+  \mkbibparens{\printdateextra}\adddot\addspace%
   % 表題
   \printfield{title}%
   \iffieldundef{subtitle}{}{%
