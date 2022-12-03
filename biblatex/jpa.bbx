@@ -960,7 +960,9 @@ useorigauthor=true,
   \iffieldundef{organization}{}{\printfield{organization}}%
   % doi／閲覧日時
   \newunit
-  \iffieldundef{doi}{}{\printfield{doi}}%
+  \iffieldundef{doi}{}{%
+    \renewcommand{\finentrypunct}{}%
+    \printfield{doi}}%
   \iffieldundef{url}{}{\usebibmacro{url+urldate}}%
   \usebibmacro{finentry}%
 }
