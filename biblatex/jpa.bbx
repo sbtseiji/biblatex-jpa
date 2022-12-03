@@ -901,7 +901,7 @@ useorigauthor=true,
     \usebibmacro{volume+issues}
     \iffieldundef{pages}{}{\printfield{pages}}%
   }{\printtext{%
-    \ifthenelse{\boolean{japanese}}{\addspace}{}
+    \ifthenelse{\boolean{japanese}}{\addspace}{\adddot}
     Advance online publication}}%
   % doi
   \iffieldundef{doi}{}{%
