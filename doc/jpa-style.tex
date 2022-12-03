@@ -92,11 +92,25 @@ jpaスタイルファイルは，\texttt{.bbx}，\texttt{.cbx}，\texttt{.dbx}�
   \textcite{中沢1978}によれば，これまでの研究において……
 \end{verbatim}
 
-これは，次のように表示されます。
+これは次のように表示されます。
 
 \begin{quoting}
   \small
   \textcite{中沢1978}によれば，これまでの研究において……
+\end{quoting}
+
+なお，\texttt{\textbackslash{textcite}\{\}}コマンドの引数にコンマ区切りで複数の引用キーを指定した場合，あるいは\texttt{\textbackslash{textcites}\{\}}コマンドで複数の文献を一度に引用した場合には，それぞれの文献情報の間に「と」や「および」などの区切り文字が挿入されます。たとえば，「\texttt{\textbackslash{textcite}\{齊藤2019,森川2010\}}」のようにして2つの文献を一度に引用した場合，本文中の表示は次のようになります。
+
+\begin{quoting}
+  \small
+  \textcite{齊藤2019,森川2010}によれば，これまでの研究において……
+\end{quoting}
+
+また，「\texttt{\textbackslash{textcite}\{齊藤2019,森川2010,坂野1994\}}」のように3つ以上の文献を一度に引用した場合，本文中の表示は次のようになります。
+
+\begin{quoting}
+  \small
+  \textcite{齊藤2019,森川2010,坂野1994}によれば，これまでの研究において……
 \end{quoting}
 
 \subsection{括弧に入れて引用する}
@@ -125,7 +139,6 @@ jpaスタイルファイルは，\texttt{.bbx}，\texttt{.cbx}，\texttt{.dbx}�
   ……ということである\parencite{坂本2013,松井2010}。
 \end{quoting}
 
-なお，残念ながら，\texttt{\textbackslash{textcites}\{\}}などのマルチ引用コマンドにはまだ対応できていません。
 
 \subsection{括弧なしで引用する}
 \texttt{\textbackslash{parencite}\{\}}コマンドでは，文献情報の前後に括弧が自動的に挿入されますが，そうしたくない場合もあるでしょう。その場合には，\texttt{\textbackslash{cite}\{\}}コマンドを使用することで，前後の括弧を非表示にできます。その場合，文献情報の前後の括弧は自分で入力する必要があります。
