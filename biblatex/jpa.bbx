@@ -47,6 +47,7 @@ useorigauthor=true,
   \ifthenelse{\equal{\thefirstlistitem{language}}{japanese}}{%
     \setboolean{japanese}{true}%
     \renewcommand*{\newunitpunct}{}%
+    \renewcommand*{\finentrypunct}{}%
     \renewcommand*{\multinamedelim}{・}%
     \renewcommand*{\revsdnamepunct}{\addspace}%
     }{}%
@@ -484,7 +485,6 @@ useorigauthor=true,
 %%% 機関 %%%
 \newbibmacro*{type+institution}{%
   \ifthenelse{\boolean{japanese}}{%
-    \renewcommand*{\finentrypunct}{}%
     \printlist{institution}\printfield{type}%
   }{%
     \printtext[parens]{\printfield{type}}%
@@ -530,13 +530,10 @@ useorigauthor=true,
     \ifthenelse{\boolean{japanese}}{%
     \printfield{edition}%
     }{%
-    \mkbibparens{\printfield{edition}}}%
+    \mkbibparens{\printfield{edition}}\setunit{\adddot\space}}%
   }
   % 出版社
-  \ifthenelse{\boolean{japanese}}{%
-    % 日本語文献の場合，最後のピリオドなし
-    \renewcommand*{\finentrypunct}{}%
-  }{\adddot}
+  \ifthenelse{\boolean{japanese}}{}{\adddot}%
   \printlist{publisher}%
   \iffieldundef{origyear}{}{% %% 外国語書籍の再販
   \newunit%
@@ -762,7 +759,7 @@ useorigauthor=true,
   \usebibmacro{begentry}%
   \iffieldundef{related}{% relatedフィールドに値なし
     \ifnameundef{translator}{%
-      \usebibmacro{book}}{%
+      \usebibmacro*{book}}{%
       \usebibmacro*{translatedbook}%
     }
   }{% relatedフィールドに値あり
@@ -804,7 +801,7 @@ useorigauthor=true,
     pp.\space\printfield{pages}}%
   \ifthenelse{\boolean{japanese}}{%
     \nopunct\setunit{\addjspace}%
-    \renewcommand*{\finentrypunct}{}%
+%    \renewcommand*{\finentrypunct}{}%
   }{\newunit}
   \printlist{publisher}%
   \usebibmacro{finentry}%
@@ -865,7 +862,7 @@ useorigauthor=true,
     \iffieldundef{volume}{}{%
       \ifthenelse{\boolean{japanese}}{%
         \usebibmacro{volume:book}\addjspace%
-        \renewcommand*{\finentrypunct}{}%
+%        \renewcommand*{\finentrypunct}{}%
       }{%
         \adddot\addspace\usebibmacro{volume:book}\newunit%
       }%
@@ -899,7 +896,7 @@ useorigauthor=true,
   \iffieldundef{howpublished}{
     \setunit*{\addcomma\addspace}
     \usebibmacro{volume+issues}
-    \iffieldundef{pages}{}{\printfield{pages}}%
+    \iffieldundef{pages}{}{\printfield{pages}\adddot}%
   }{\printtext{%
     \ifthenelse{\boolean{japanese}}{\addspace}{\adddot}
     Advance online publication}}%
@@ -1042,6 +1039,6 @@ useorigauthor=true,
     \setunit*{\addcomma\addspace}
   }
   % 掲載ページ
-  \printfield{pages}
+  \printfield{pages}\adddot
   \usebibmacro{finentry}%
 }
