@@ -997,8 +997,8 @@ useorigauthor=true,
     \printfield{subtitle}%
   }
   % 発表形式（英文のみ）
-  \iffieldundef{note}{}{%
-    \mkbibbrackets{\printfield{note}}%
+  \iffieldundef{type}{}{%
+    \mkbibbrackets{\printfield{type}}%
     \newunit%
   }
   % 誌名／大会名
