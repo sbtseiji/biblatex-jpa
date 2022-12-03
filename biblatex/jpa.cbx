@@ -9,21 +9,29 @@
 % 著者名と出版年の区切りはコンマ
 \DeclareDelimFormat{nameyeardelim}{\addcomma\space}
 
-% multiciteの区切り文字（文書全体で変更）
+% 
+%\DeclareDelimFormat{multicitedelim}{\addsemicolon\space}
+
+% citesコマンドの区切り文字（文書全体で変更）
 \renewcommand*{\textcitedelim}{%
   \iftoggle{bbx:engmode}{%
-    \iffinalcitedelim%
-      {\ifnumgreater{\value{textcitetotal}}{2}
+    \iffinalcitedelim{%
+      \ifnumgreater{\value{textcitetotal}}{2}
         {\iftextcitepunct{\finalandsemicolon}{\finalandcomma}}{}%
       \addspace\bibstring{and}}%
       {\iftextcitepunct{\addsemicolon}{\addcomma}}%
     \space%
   }{%
-  \printtext{，}%
-  \iffinalcitedelim
-    {\printtext{および}}{}}%
-  }
-
+    \iffinalcitedelim{%
+      \ifnumequal{\value{textcitetotal}}{2}{%
+        \printtext{と}%
+      }{%
+        \printtext{，}%
+        \iffinalcitedelim{\printtext{および}}{}%
+      }%
+    }{\printtext{，}}%
+  }%
+}
 
 % 引用ごとに言語を判断して処理
 \AtEveryCitekey{%
@@ -44,7 +52,7 @@
     % 姓と名の区切り
     \renewcommand{\revsdnamepunct}{\space}%
     % 余分な and を抑制
-    \renewcommand{\textcitedelim}{}%
+%    \renewcommand{\textcitedelim}{}%
   }{%
     % 英語文献用の設定
     %
