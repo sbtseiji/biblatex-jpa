@@ -922,9 +922,14 @@ useorigauthor=true,
   \iffieldundef{subtitle}{}{%
     \printfield{subtitle}%
   }
+  % 誌名
+  \iffieldundef{journaltitle}{}{\printfield{journaltitle}\addcomma\space}%
+  % 巻号
+  \iffieldundef{volume}{}{\printfield[emph]{volume}}%
+  \iffieldundef{number}{}{\printfield[parens]{number}\addjspace}%
   % 出版社
   \renewcommand*{\finentrypunct}{}%
-  \printlist{publisher}%
+  \printlist{institution}%
   \usebibmacro{finentry}%
 }
 %% iv)紀要，その他　→ i)，ii）と同じ
