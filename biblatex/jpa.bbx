@@ -180,7 +180,7 @@ useorigauthor=true,
 %%%%%%% 文献情報フォーマット・マクロ %%%%%%%
 
 %%% 著者名 %%%
-\renewbibmacro*{author}{%
+\newbibmacro*{author+type}{%
   \printnames{author}%
   \iffieldundef{authortype}{}{%
     \usebibmacro{ed-eds:author}%
@@ -188,9 +188,12 @@ useorigauthor=true,
   }%
 }
 
+
+
+
 %%% 著者名+出版年 %%%
 \newbibmacro*{author+year}{%
-  \usebibmacro{author}%
+  \printnames{author}%
   \ifthenelse{\not\ifnameundef{author}}{%
     \setunit*{\printdelim{nameyeardelim}}%
   }{%
@@ -533,7 +536,7 @@ useorigauthor=true,
     \mkbibparens{\printfield{edition}}\setunit{\adddot\space}}%
   }
   % 出版社
-  \ifthenelse{\boolean{japanese}}{}{\adddot}%
+  \ifthenelse{\boolean{japanese}}{}{\adddot\space}%
   \printlist{publisher}%
   \iffieldundef{origyear}{}{% %% 外国語書籍の再販
   \newunit%
@@ -556,7 +559,7 @@ useorigauthor=true,
       \printlist{origpublisher}\setunit*{\adddot\space}%
       \printtext{\\(}%
       \setboolean{japanese}{false}%
-      \usebibmacro{author}%
+      \printnames{author}%
       \addspace\space\newunit%
       \renewcommand{\revsdnamepunct}{\space}%
       \setboolean{japanese}{true}%
@@ -644,7 +647,7 @@ useorigauthor=true,
 \newbibmacro*{translatedbook:english}{%
   \renewcommand*{\finentrypunct}{}%
   \usebibmacro{related:init}%
-  \usebibmacro{author}\printdelim{nameyeardelim}%
+  \usebibmacro{author+type}\printdelim{nameyeardelim}%
   \usebibmacro{date+extradate}%
   \setunit{\addperiod\space}%
   \printfield{title}%%
@@ -685,7 +688,7 @@ useorigauthor=true,
   \usebibmacro{related:init}%
   % 著者名
   \ifnameundef{author}{}{%
-    \usebibmacro*{author}%
+    \printnames{author}%
     \usebibmacro{ed-eds:author}%
     \printtext[parens]{\printdateextra}%
     \setunit{\adddot\addspace}}%
@@ -788,6 +791,7 @@ useorigauthor=true,
   \usebibmacro{begentry}%
   % 著者名，刊行年
   \printnames{author}%
+  \usebibmacro{ed-eds:author}%
   \mkbibparens{\printdateextra}%
   \setunit{\addperiod\addspace}%
   % 特定章名
