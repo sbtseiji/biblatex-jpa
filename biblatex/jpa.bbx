@@ -512,7 +512,7 @@ useorigauthor=true,
 \newbibmacro*{book}{%
   % 著者名
   \ifnameundef{author}{}{%
-    \printnames{author}\usebibmacro{ed-eds:author}%
+    \printnames{author}\space%
     \ifnameundef{editor}{%
       \printtext[parens]{\printdateextra}%
       \setunit{\addperiod\addspace}}{\addspace\space}%
@@ -647,7 +647,7 @@ useorigauthor=true,
 \newbibmacro*{translatedbook:english}{%
   \renewcommand*{\finentrypunct}{}%
   \usebibmacro{related:init}%
-  \usebibmacro{author+type}\printdelim{nameyeardelim}%
+  \printnames{author}\printdelim{nameyeardelim}%
   \usebibmacro{date+extradate}%
   \setunit{\addperiod\space}%
   \printfield{title}%%
