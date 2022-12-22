@@ -956,9 +956,17 @@ useorigauthor=true,
     \printfield{subtitle}%
   }
   % アップロードサイト名
+  \ifthenelse{\boolean{japanese}}{%
+    % \newunit
+    \addjspace%
+    \iffieldundef{eprinttype}{}{\printfield{eprinttype}}%
+    \iflistundef{organization}{}{\printlist{organization}}%
+    \addjspace%
+  }{%
   \newunit
   \iffieldundef{eprinttype}{}{\printfield{eprinttype}}%
-  \iffieldundef{organization}{}{\printfield{organization}}%
+  \iflistundef{organization}{}{\printlist{organization}}%
+  }%
   % doi／閲覧日時
   \newunit
   \iffieldundef{doi}{}{%
