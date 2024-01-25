@@ -282,7 +282,7 @@
 
 \newbibmacro*{translatoratype}{
   \ifthenelse{\boolean{japanese}}{%
-    \iffieldundef{translatora}{}{      % translatoraフィールドがあるときは，
+    \ifnameundef{translatora}{}{      % translatoraフィールドがあるときは，
       \iffieldundef{translatoratype} {% translatoratypeをみて，定義がなければ「訳」
         \printtext[parens]{訳}
       }{% 定義があればそれを使う
