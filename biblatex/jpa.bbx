@@ -806,6 +806,7 @@
   \iffieldundef{subtitle}{}{%
     \printfield{subtitle}%
   }%
+  \ifthenelse{\boolean{japanese}}{\addspace}{} % Inの代わりにスペース
   \usebibmacro{bookinfo}\setunit{\addspace}%
   \printtext[parens]{\iffieldundef{edition}{}{%
       \printfield{edition}\addcomma\space}%

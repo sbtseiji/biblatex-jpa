@@ -555,6 +555,51 @@
       \field{origdateera}{ce}
       \true{nocite}
     \endentry
+    \entry{Hirakawa2021}{inbook}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=eb73c3f2fea0add12fecfec6810d9139}{%
+           family={平川},
+           familyi={平\bibinitperiod},
+           given={真},
+           giveni={真\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=0e9f675c47dabb3d6b33b41955740203}{%
+           family={清水},
+           familyi={清\bibinitperiod},
+           given={裕士},
+           giveni={裕\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {japanese}%
+      }
+      \list{publisher}{1}{%
+        {放送大学教育振興会}%
+      }
+      \strng{namehash}{eb73c3f2fea0add12fecfec6810d9139}
+      \strng{fullhash}{eb73c3f2fea0add12fecfec6810d9139}
+      \strng{bibnamehash}{eb73c3f2fea0add12fecfec6810d9139}
+      \strng{authorbibnamehash}{eb73c3f2fea0add12fecfec6810d9139}
+      \strng{authornamehash}{eb73c3f2fea0add12fecfec6810d9139}
+      \strng{authorfullhash}{eb73c3f2fea0add12fecfec6810d9139}
+      \strng{editorbibnamehash}{0e9f675c47dabb3d6b33b41955740203}
+      \strng{editornamehash}{0e9f675c47dabb3d6b33b41955740203}
+      \strng{editorfullhash}{0e9f675c47dabb3d6b33b41955740203}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{心理学統計法}
+      \field{title}{2変数の関係を表す統計量の推定}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \true{nocite}
+      \field{pages}{150\bibrangedash 162}
+      \range{pages}{13}
+    \endentry
     \entry{堀2009}{book}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=79e228975e1249e40760b69c6e131244}{%
