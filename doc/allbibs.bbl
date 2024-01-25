@@ -92,6 +92,51 @@
       \field{origdateera}{ce}
       \true{nocite}
     \endentry
+    \entry{Allport1935}{inbook}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=fc0d2d667a92a5817be98057a42d6dd6}{%
+           family={Allport},
+           familyi={A\bibinitperiod},
+           given={Gordon\bibnamedelima W.},
+           giveni={G\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=9f7d574254341597b436c1288e4d2976}{%
+           family={Fishbein},
+           familyi={F\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York}%
+      }
+      \list{publisher}{1}{%
+        {John Wiley \& Sons Inc}%
+      }
+      \strng{namehash}{fc0d2d667a92a5817be98057a42d6dd6}
+      \strng{fullhash}{fc0d2d667a92a5817be98057a42d6dd6}
+      \strng{bibnamehash}{fc0d2d667a92a5817be98057a42d6dd6}
+      \strng{authorbibnamehash}{fc0d2d667a92a5817be98057a42d6dd6}
+      \strng{authornamehash}{fc0d2d667a92a5817be98057a42d6dd6}
+      \strng{authorfullhash}{fc0d2d667a92a5817be98057a42d6dd6}
+      \strng{editorbibnamehash}{9f7d574254341597b436c1288e4d2976}
+      \strng{editornamehash}{9f7d574254341597b436c1288e4d2976}
+      \strng{editorfullhash}{9f7d574254341597b436c1288e4d2976}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Readings in Attitude Theory and Measurement}
+      \field{title}{Attitudes}
+      \field{year}{1967}
+      \field{dateera}{ce}
+      \true{nocite}
+      \field{pages}{3\bibrangedash 13}
+      \range{pages}{11}
+    \endentry
     \entry{APA2013}{book}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=ce2c470a69e9b189664512d02dc6f03c}{%
