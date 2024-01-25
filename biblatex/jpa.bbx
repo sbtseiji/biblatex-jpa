@@ -11,21 +11,21 @@
 
 %%% オプションの設定
 \ExecuteBibliographyOptions{%
-autocite=inline,%
-alldates=year,%
-maxbibnames=99,%
-maxcitenames=2,%
-minbibnames=19,%
-mincitenames=1,%
-mincrossrefs=999,%
-maxitems=999,%
-sorting=nyt,%
-urldate=long,%
-dateabbrev=false,%
-useorigauthor=true,
-%uniquelist=minyear,%
-%uniquename=true,%
-%uniqueprimaryauthor=true,%%
+  autocite=inline,%
+  alldates=year,%
+  maxbibnames=99,%
+  maxcitenames=2,%
+  minbibnames=19,%
+  mincitenames=1,%
+  mincrossrefs=999,%
+  maxitems=999,%
+  sorting=nyt,%
+  urldate=long,%
+  dateabbrev=false,%
+  useorigauthor=true,
+  %uniquelist=minyear,%
+  %uniquename=true,%
+  %uniqueprimaryauthor=true,%%
 }
 
 
@@ -44,12 +44,12 @@ useorigauthor=true,
 % 日本語文献かどうかをチェックして区切り文字を置き換える
 \AtEveryBibitem{
   \iflistundef{language}{}{%
-  \ifthenelse{\equal{\thefirstlistitem{language}}{japanese}}{%
-    \setboolean{japanese}{true}%
-    \renewcommand*{\newunitpunct}{}%
-    \renewcommand*{\finentrypunct}{}%
-    \renewcommand*{\multinamedelim}{・}%
-    \renewcommand*{\revsdnamepunct}{\addspace}%
+    \ifthenelse{\equal{\thefirstlistitem{language}}{japanese}}{%
+      \setboolean{japanese}{true}%
+      \renewcommand*{\newunitpunct}{}%
+      \renewcommand*{\finentrypunct}{}%
+      \renewcommand*{\multinamedelim}{・}%
+      \renewcommand*{\revsdnamepunct}{\addspace}%
     }{}%
   }%
 }
@@ -58,8 +58,8 @@ useorigauthor=true,
   \ifthenelse{\boolean{japanese}}{・}{%
     \ifthenelse{\value{listcount}>\maxprtnames}{}{%
       \ifthenelse{\value{liststop}>2}{%
-      \finalandcomma\addspace\&\space}{%
-      \addspace\&\space}%
+        \finalandcomma\addspace\&\space}{%
+        \addspace\&\space}%
     }%
   }%
 }
@@ -92,31 +92,31 @@ useorigauthor=true,
     \ifthenelse{\value{listcount}=\maxprtnames\AND\value{listcount}<\value{listtotal}}{%
       % 「...」で省略
       \space\ldots\space%
+    }{%
+      % 処理中の著者の順番が\maxprtnamesより大きく，総数未満である場合
+      \ifthenelse{\value{listcount}>\maxprtnames\AND\value{listcount}<\value{listtotal}}{%
       }{%
-        % 処理中の著者の順番が\maxprtnamesより大きく，総数未満である場合
-        \ifthenelse{\value{listcount}>\maxprtnames\AND\value{listcount}<\value{listtotal}}{%
-        }{%
-          \ifthenelse{\value{listcount}=1}{}{%
-            \ifthenelse{\value{listcount}<\maxprtnames}{%
+        \ifthenelse{\value{listcount}=1}{}{%
+          \ifthenelse{\value{listcount}<\maxprtnames}{%
             \printtext{・}%
-            }{}%
-          }%
-          \namepartfamily%
-          \space%
-          \namepartgiven%
+          }{}%
+        }%
+        \namepartfamily%
+        \space%
+        \namepartgiven%
       }%
     }%
   }{%
     \ifthenelse{\value{listcount}=\maxprtnames\AND\value{listcount}<\value{listtotal}}{%
-        \addcomma\space\ldots\space%
-      }{%
-        \ifthenelse{\value{listcount}>\maxprtnames\AND\value{listcount}<\value{listtotal}}{}{%
-          \usebibmacro{name:family-given}%
-          {\namepartfamily}%
-          {\namepartgiveni}%
-          {\namepartprefix}%
-          {\namepartsuffix}%
-        }%
+      \addcomma\space\ldots\space%
+    }{%
+      \ifthenelse{\value{listcount}>\maxprtnames\AND\value{listcount}<\value{listtotal}}{}{%
+        \usebibmacro{name:family-given}%
+        {\namepartfamily}%
+        {\namepartgiveni}%
+        {\namepartprefix}%
+        {\namepartsuffix}%
+      }%
     }%
   }%
 }
@@ -132,25 +132,25 @@ useorigauthor=true,
   \ifthenelse{\boolean{japanese}}{%
     \ifthenelse{\value{listcount}=\maxprtnames\AND\value{listcount}<\value{listtotal}}{%
       \space\ldots\space%
-      }{%
-        \ifthenelse{\value{listcount}>\maxprtnames\AND\value{listcount}<\value{listtotal}}{}{%
-          \namepartfamily%
-          \space%
-          \namepartgiven%
-          \ifthenelse{\value{listcount}=\value{listtotal}}{}{\printtext{・}}%
+    }{%
+      \ifthenelse{\value{listcount}>\maxprtnames\AND\value{listcount}<\value{listtotal}}{}{%
+        \namepartfamily%
+        \space%
+        \namepartgiven%
+        \ifthenelse{\value{listcount}=\value{listtotal}}{}{\printtext{・}}%
       }%
     }%
   }{%
     \ifthenelse{\value{listcount}=\maxprtnames\AND\value{listcount}<\value{listtotal}}{%
-        \addcomma\space\ldots\space%
-      }{%
-        \ifthenelse{\value{listcount}>\maxprtnames\AND\value{listcount}<\value{listtotal}}{}{%
-          \usebibmacro{name:given-family}%
-          {\namepartfamily}%
-          {\namepartgiveni}%
-          {\namepartprefix}%
-          {\namepartsuffix}%
-        }%
+      \addcomma\space\ldots\space%
+    }{%
+      \ifthenelse{\value{listcount}>\maxprtnames\AND\value{listcount}<\value{listtotal}}{}{%
+        \usebibmacro{name:given-family}%
+        {\namepartfamily}%
+        {\namepartgiveni}%
+        {\namepartprefix}%
+        {\namepartsuffix}%
+      }%
     }%
   }%
 }
@@ -274,7 +274,7 @@ useorigauthor=true,
     }%
   }{%
     \iffieldundef{translatortype}{%
-    \printfield{translatortype}\printtext{Trans.}}{%
+      \printfield{translatortype}\printtext{Trans.}}{%
       \printfield{translatortype}%
     }%
   }%
@@ -282,15 +282,22 @@ useorigauthor=true,
 
 \newbibmacro*{translatoratype}{
   \ifthenelse{\boolean{japanese}}{%
-    \iffieldundef{translatoratype}{%
-      \printtext[parens]{訳}}{%
-      \printfield[parens]{translatoratype}%
-    }%
+    \iffieldundef{translatora}{}{      % translatoraフィールドがあるときは，
+      \iffieldundef{translatoratype} {% translatoratypeをみて，定義がなければ「訳」
+        \printtext[parens]{訳}
+      }{% 定義があればそれを使う
+        \printfield[parens]{translatoratype}%
+      }%
+    }
   }{%
-    \iffieldundef{translatoratype}{%
-    \printfield{translatoratype}\printtext{Trans.}}{%
-      \printfield{translatoratype}%
-    }%
+    % 英語のばあい
+    \iffieldundef{translatora}{}{
+      \iffieldundef{translatoratype}{%
+        \printfield{translatoratype}\printtext{Trans.}
+      }{%
+        \printfield{translatoratype}%
+      }%  
+    }
   }%
 }
 
@@ -366,10 +373,10 @@ useorigauthor=true,
 \DeclareFieldFormat[book,mvbook,online,thesis,inproceedings,incollection]{subtitle}{%
   \ifthenelse{\boolean{japanese}}{%
     % 日本語論文の場合
-      \printtext{------}#1\printtext{------}\setunit{\addjspace}%
-    }{
-      \emph{\addcolon\addspace#1}%
-    }
+    \printtext{------}#1\printtext{------}\setunit{\addjspace}%
+  }{
+    \emph{\addcolon\addspace#1}%
+  }
 }
 
 %%% 論文サブタイトル %%%
@@ -377,9 +384,9 @@ useorigauthor=true,
   \ifthenelse{\boolean{japanese}}{%
     % 日本語論文の場合
     \addthinspace\printtext{------}#1\printtext{------}\setunit{\addjspace}%
-    }{%
-      \addcolon\addspace#1%
-    }
+  }{%
+    \addcolon\addspace#1%
+  }
 }
 
 %%% inbook,incollectionの書籍タイトル %%%
@@ -402,18 +409,18 @@ useorigauthor=true,
 %%% inbookにおける書籍情報の処理 %%%
 \newbibmacro{bookinfo}{%
   \ifthenelse{\boolean{japanese}}{%
-  % 編集者名
+    % 編集者名
     \ifnameundef{editor}{}{%
       \printnames{editor}\usebibmacro{ed-eds:editor}\setunit{\addspace}}%
-  % 書籍名
+    % 書籍名
     \printfield{booktitle}%
     \iffieldundef{booksubtitle}{}{\printfield{booksubtitle}}%
   }{%
-  % 編集者名
+    % 編集者名
     \newunit%
     \ifnameundef{editor}{}{%
-    \usebibmacro{editor:given-family}\setunit{\addspace}}%
-  % 書籍名
+      \usebibmacro{editor:given-family}\setunit{\addspace}}%
+    % 書籍名
     \printfield{booktitle}%
     \iffieldundef{booksubtitle}{}{\printfield{booksubtitle}}%
   }%
@@ -430,8 +437,8 @@ useorigauthor=true,
 % 表示マクロ
 \renewbibmacro*{url+urldate}{%
   \iffieldundef{urlyear}
-    {}
-    {\printurldate\setunit{\addspace}}\printfield{url}}
+  {}
+  {\printurldate\setunit{\addspace}}\printfield{url}}
 
 %%% 巻号 %%%
 \newbibmacro*{volume+issues}{%
@@ -449,7 +456,7 @@ useorigauthor=true,
     \iffieldundef{number}{}{%
       \setunit*{\addthinspace}
       \printtext[parens]{%
-      \printfield{number}}%
+        \printfield{number}}%
     }
     \setunit*{\addcomma\addspace}
   }
@@ -501,7 +508,7 @@ useorigauthor=true,
   \ifthenelse{\boolean{japanese}}{%
     \nopunct
     \mkbibparens{\strfirstlistitem{location}}%
-%    \mkbibparens{\printlist{location}}%
+    %    \mkbibparens{\printlist{location}}%
   }{%
     \printlist{location}%
   }%
@@ -516,7 +523,7 @@ useorigauthor=true,
     \ifnameundef{editor}{%
       \printtext[parens]{\printdateextra}%
       \setunit{\addperiod\addspace}}{\addspace\space}%
-    }%
+  }%
   % 編集者名
   \ifnameundef{editor}{}{%
     \printnames{editor}\usebibmacro{ed-eds:editor}%
@@ -531,20 +538,20 @@ useorigauthor=true,
   \iffieldundef{edition}{%
   }{%
     \ifthenelse{\boolean{japanese}}{%
-    \printfield{edition}%
+      \printfield{edition}%
     }{%
-    \mkbibparens{\printfield{edition}}\setunit{\adddot\space}}%
+      \mkbibparens{\printfield{edition}}\setunit{\adddot\space}}%
   }
   % 出版社
   \ifthenelse{\boolean{japanese}}{}{\adddot\space}%
   \printlist{publisher}%
   \iffieldundef{origyear}{}{% %% 外国語書籍の再販
-  \newunit%
-  \renewcommand*{\finentrypunct}{}%
-  \printtext[parens]{Original work published \printorigdate%
-  \iflistundef{origpublisher}{}{%
-    \addcomma\space\printlist{origpublisher}%
-  }}%
+    \newunit%
+    \renewcommand*{\finentrypunct}{}%
+    \printtext[parens]{Original work published \printorigdate%
+      \iflistundef{origpublisher}{}{%
+        \addcomma\space\printlist{origpublisher}%
+      }}%
   }%
 }
 
@@ -568,7 +575,7 @@ useorigauthor=true,
       \usebibmacro{date+extradate}\setunit*{\addperiod\addspace}%
       \printfield{title}%
       \iffieldundef{subtitle}{}{%
-      \printfield{subtitle}%
+        \printfield{subtitle}%
       }%
       \setunit*{\addjspace}%
       \printlist{publisher}%
@@ -711,7 +718,7 @@ useorigauthor=true,
     \ifnameundef{editor}{}{%
       \printnames{editor}%
       \usebibmacro{ed-eds:editor}\setunit*{\addspace\space}}%
-  \printfield{series}\setunit*{\addspace}%
+    \printfield{series}\setunit*{\addspace}%
   }
   \iffieldundef{volume}{}{\printfield{volume}}%
   \iffieldundef{number}{}{\printfield{number}}%
@@ -768,10 +775,10 @@ useorigauthor=true,
   }{% relatedフィールドに値あり
     \iffieldequalstr{relatedtype}{translationof}{%
       \ifthenelse{\boolean{japanese}}{% 日本語の翻訳書の場合
-          \usebibmacro{translatedbook:japanese}%
-        }{% 外国語の翻訳書の場合
-          \usebibmacro{translatedbook:english}%
-        }%
+        \usebibmacro{translatedbook:japanese}%
+      }{% 外国語の翻訳書の場合
+        \usebibmacro{translatedbook:english}%
+      }%
     }{}%
     \iffieldequalstr{relatedtype}{mvbook}{%
       \ifthenelse{\boolean{japanese}}{%
@@ -801,11 +808,11 @@ useorigauthor=true,
   }%
   \usebibmacro{bookinfo}\setunit{\addspace}%
   \printtext[parens]{\iffieldundef{edition}{}{%
-    \printfield{edition}\addcomma\space}%
+      \printfield{edition}\addcomma\space}%
     pp.\space\printfield{pages}}%
   \ifthenelse{\boolean{japanese}}{%
     \nopunct\setunit{\addjspace}%
-%    \renewcommand*{\finentrypunct}{}%
+    %    \renewcommand*{\finentrypunct}{}%
   }{\newunit}
   \printlist{publisher}%
   \usebibmacro{finentry}%
@@ -837,10 +844,10 @@ useorigauthor=true,
 %% vi) 数巻にわたる書籍の特定の1巻
 \DeclareBibliographyDriver{incollection}{%
   \ifthenelse{\boolean{japanese}}{%
-      \renewcommand*{\newunitpunct}{}%
-    }{%
-      \renewcommand*{\newunitpunct}{\adddot\addspace}%
-    }%
+    \renewcommand*{\newunitpunct}{}%
+  }{%
+    \renewcommand*{\newunitpunct}{\adddot\addspace}%
+  }%
   \usebibmacro{begentry}%
   % 著者・編集者
   \ifnameundef{author}{}{%
@@ -866,7 +873,7 @@ useorigauthor=true,
     \iffieldundef{volume}{}{%
       \ifthenelse{\boolean{japanese}}{%
         \usebibmacro{volume:book}\addjspace%
-%        \renewcommand*{\finentrypunct}{}%
+        %        \renewcommand*{\finentrypunct}{}%
       }{%
         \adddot\addspace\usebibmacro{volume:book}\newunit%
       }%
@@ -902,8 +909,8 @@ useorigauthor=true,
     \usebibmacro{volume+issues}
     \iffieldundef{pages}{}{\printfield{pages}\adddot}%
   }{\printtext{%
-    \ifthenelse{\boolean{japanese}}{\addspace}{\adddot}
-    Advance online publication}}%
+      \ifthenelse{\boolean{japanese}}{\addspace}{\adddot}
+      Advance online publication}}%
   % doi
   \iffieldundef{doi}{}{%
     \setunit*{\adddot\addspace}%
@@ -963,9 +970,9 @@ useorigauthor=true,
     \iflistundef{organization}{}{\printlist{organization}}%
     \addjspace%
   }{%
-  \newunit
-  \iffieldundef{eprinttype}{}{\printfield{eprinttype}}%
-  \iflistundef{organization}{}{\printlist{organization}}%
+    \newunit
+    \iffieldundef{eprinttype}{}{\printfield{eprinttype}}%
+    \iflistundef{organization}{}{\printlist{organization}}%
   }%
   % doi／閲覧日時
   \newunit

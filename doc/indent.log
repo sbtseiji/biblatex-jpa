@@ -1,0 +1,37 @@
+INFO:  latexindent.pl version 3.23.6, 2024-01-17, a script to indent .tex files
+       latexindent.pl lives here: /usr/local/Cellar/latexindent/3.23.6/libexec/bin/
+       Thu Jan 25 13:09:33 2024
+       Filename: /Users/napier3/Dropbox/Git/biblatex-jpa/biblatex/__latexindent_temp_jpa.bbx
+INFO:  Processing switches:
+       -y|--yaml: YAML settings specified via command line
+       -c|--cruft: cruft directory
+INFO:  Directory for backup files and /Users/napier3/Dropbox/Git/biblatex-jpa/doc//indent.log:
+       /Users/napier3/Dropbox/Git/biblatex-jpa/doc/
+INFO:  Perl modules are being loaded from the following directories:
+       /usr/local/opt/perl/lib/perl5/5.38/FindBin.pm
+       /usr/local/Cellar/latexindent/3.23.6/libexec/lib/perl5/YAML/Tiny.pm
+       /usr/local/opt/perl/lib/perl5/5.38/File/Copy.pm
+       /usr/local/opt/perl/lib/perl5/5.38/File/Basename.pm
+       /usr/local/opt/perl/lib/perl5/5.38/Getopt/Long.pm
+       /usr/local/Cellar/latexindent/3.23.6/libexec/lib/perl5/File/HomeDir.pm
+INFO:  LatexIndent perl modules are being loaded from, for example:
+       /usr/local/Cellar/latexindent/3.23.6/libexec/lib/perl5/LatexIndent/Document.pm
+INFO:  YAML settings read: defaultSettings.yaml
+       Reading defaultSettings.yaml from /usr/local/Cellar/latexindent/3.23.6/libexec/bin/defaultSettings.yaml
+INFO:  YAML reading settings
+       Home directory is /Users/napier3
+       latexindent.pl didn't find indentconfig.yaml or .indentconfig.yaml
+       see all possible locations: https://latexindentpl.readthedocs.io/en/latest/sec-appendices.html#indentconfig-options)
+INFO:  YAML settings read: -y switch
+       YAML setting: defaultIndent:'  '
+       single-quoted string found in -y switch: '  ', substitute to   
+       Updating mainSettings with defaultIndent:   
+INFO:  Phase 1: searching for objects
+INFO:  Phase 2: finding surrounding indentation
+INFO:  Phase 3: indenting objects
+INFO:  Phase 4: final indentation check
+INFO:  Output routine:
+       Not outputting to file; see -w and -o switches for more options.
+       --------------
+INFO:  Please direct all communication/issues to:
+        https://github.com/cmhughes/latexindent.pl
