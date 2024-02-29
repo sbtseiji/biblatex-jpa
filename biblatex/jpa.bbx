@@ -224,11 +224,13 @@
       \printtext[parens]{編}}{%
       \printfield[parens]{authortype}}%
   }{%
-    \ifthenelse{\value{author}>1}{%
-      \addspace\printtext[parens]{Eds.}%
-    }{%
-      \addspace\printtext[parens]{Ed.}%
-    }%
+    \iffieldequalstr{authortype}{editor}{
+      \ifthenelse{\value{author}>1}{%
+        \addspace\printtext[parens]{Eds.}%
+      }{%
+        \addspace\printtext[parens]{Ed.}%
+      }%
+    }
   }
 }
 
