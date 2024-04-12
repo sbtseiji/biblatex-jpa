@@ -84,7 +84,7 @@
 \DeclareUniquenameTemplate{
   \namepart[use=true, base=true]{prefix}
   \namepart[base=true]{family}
-  \namepart[base=true]{giveni}
+  \namepart[base=true]{given}
   \namepart{suffix}
 }
 
@@ -118,7 +118,7 @@
       \ifthenelse{\value{listcount}>\maxprtnames\AND\value{listcount}<\value{listtotal}}{}{%
         \usebibmacro{name:family-given}%
         {\namepartfamily}%
-        {\namepartgiveni}%
+        {\namepartgiven}%
         {\namepartprefix}%
         {\namepartsuffix}%
       }%
@@ -152,7 +152,7 @@
       \ifthenelse{\value{listcount}>\maxprtnames\AND\value{listcount}<\value{listtotal}}{}{%
         \usebibmacro{name:given-family}%
         {\namepartfamily}%
-        {\namepartgiveni}%
+        {\namepartgiven}%
         {\namepartprefix}%
         {\namepartsuffix}%
       }%
