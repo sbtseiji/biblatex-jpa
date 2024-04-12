@@ -30,7 +30,12 @@
 
 
 %%% ぶら下がりインデント幅 %%%
-\setlength{\bibhang}{2\zw}
+% lualatexじゃないとエラーになることの修正
+\ifx\directlua\undefined
+  \setlength{\bibhang}{2zw}
+\else
+  \setlength{\bibhang}{2\zw}
+\fi
 
 %%% （擬似）全角幅のスペース
 \newrobustcmd*{\addjspace}{%
@@ -224,11 +229,14 @@
       \printtext[parens]{編}}{%
       \printfield[parens]{authortype}}%
   }{%
-    \ifthenelse{\value{author}>1}{%
-      \addspace\printtext[parens]{Eds.}%
-    }{%
-      \addspace\printtext[parens]{Ed.}%
-    }%
+    % この分岐がないと常にEd.がついてしまう
+    \iffieldequalstr{authortype}{editor}{
+      \ifthenelse{\value{author}>1}{%
+        \addspace\printtext[parens]{Eds.}%
+      }{%
+        \addspace\printtext[parens]{Ed.}%
+      }%
+    }
   }
 }
 
