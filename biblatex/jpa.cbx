@@ -10,7 +10,17 @@
 \DeclareDelimFormat{nameyeardelim}{\addcomma\space}
 
 % 
-%\DeclareDelimFormat{multicitedelim}{\addsemicolon\space}
+% et alの表示設定
+\DeclareDelimFormat[textcite]{andothersdelim}{%
+  \ifthenelse{\boolean{japanese}}
+    {他}
+    {\space{et~al.}}%
+}
+\DeclareDelimFormat[cite,parencite]{andothersdelim}{%
+  \ifthenelse{\boolean{japanese}}
+    {他}
+    {\space{et~al.,}}%
+}
 
 % citesコマンドの区切り文字（文書全体で変更）
 \renewcommand*{\textcitedelim}{%
@@ -48,7 +58,7 @@
     % 最後の著者名の表示前の区切り：中黒（・）
     \renewcommand*{\multinamedelim}{\printtext{・}}%
     % 3名以上の共著で著者名を省略する場合：「他」
-    \renewcommand*{\andothersdelim}{他}%
+    % \renewcommand*{\andothersdelim}{他}%
     % 姓と名の区切り
     \renewcommand{\revsdnamepunct}{\space}%
     % 余分な and を抑制
@@ -104,7 +114,8 @@
       \ifnumgreater{\value{liststop}}{1}
         {\finalandcomma}
         {}}%
-    \printdelim{andothersdelim}}
+      \printdelim{andothersdelim}
+    }
 {}}
 
 
