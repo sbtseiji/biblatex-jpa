@@ -1,0 +1,5 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'bibtest.blg'
+[68] biber-darwin:340> INFO - === 木  1 25, 2024, 15:31:41
+[225] Utils.pm:410> ERROR - Cannot find 'bibtest.bcf'!
+[226] Biber.pm:136> INFO - ERRORS: 1
