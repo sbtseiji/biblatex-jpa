@@ -9,5 +9,6 @@ jpa-style.fls
 jpa-style.log
 jpa-style.run.xml
 jpa-style.synctex.gz
+*.synctex*
 jpa-style.toc
 .DS_Store

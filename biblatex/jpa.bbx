@@ -48,8 +48,9 @@
 
 % 日本語文献かどうかをチェックして区切り文字を置き換える
 \AtEveryBibitem{
+  \setboolean{japanese}{false}%
   \iflistundef{language}{}{%
-    \ifthenelse{\equal{\thefirstlistitem{language}}{japanese}}{%
+    \ifthenelse{\equal{\thefirstlistitem{language}}{japanese}\OR\equal{\thefirstlistitem{language}}{Japanese}}{%
       \setboolean{japanese}{true}%
       \renewcommand*{\newunitpunct}{}%
       \renewcommand*{\finentrypunct}{}%
@@ -381,7 +382,7 @@
 \DeclareFieldFormat[book,mvbook,online,thesis,inproceedings,incollection]{subtitle}{%
   \ifthenelse{\boolean{japanese}}{%
     % 日本語論文の場合
-    \printtext{------}#1\printtext{------}\setunit{\addjspace}%
+    \printtext{――}#1\printtext{――}\setunit{\addjspace}%
   }{
     \emph{\addcolon\addspace#1}%
   }
@@ -391,7 +392,7 @@
 \DeclareFieldFormat[article,report,misc,inbook]{subtitle}{%
   \ifthenelse{\boolean{japanese}}{%
     % 日本語論文の場合
-    \addthinspace\printtext{------}#1\printtext{------}\setunit{\addjspace}%
+    \addthinspace\printtext{――}#1\printtext{――}\setunit{\addjspace}%
   }{%
     \addcolon\addspace#1%
   }
@@ -915,7 +916,11 @@
   \iffieldundef{subtitle}{}{%
     \printfield{subtitle}%
   }
-  \newunit
+  \ifthenelse{\boolean{japanese}}{%
+    \setunit{\addjspace}%
+  }{%
+    \setunit{\addperiod\addspace}%
+  }
   % 誌名
   \printfield{journaltitle}
   % 巻数・引用ページ（オンライン早期公開かどうかを確認してから処理）
