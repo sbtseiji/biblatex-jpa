@@ -1443,6 +1443,36 @@ Bib{\LaTeX}の\texttt{.bib}ファイルは，一部に仕様の変更や拡張�
 的研究の事前登録の現状と実践------OSF事前登録チュートリアル------　心理学研究
 \end{mihon}
 
+\subsubsection{ソフトウェアの引用}
+ソフトウェアを引用する場合は，\texttt{software}タイプとしてエントリを作成します。バージョン情報は\texttt{version}フィールドに記載します。
+
+\begin{verbatim}
+@software{引用キー,
+  author    = {著者名},
+  date      = {公開年},
+  title     = {ソフトウェア名},
+  version   = {バージョン},
+  publisher = {配布元},
+  doi       = {DOI}
+}
+\end{verbatim}
+
+\bibentry
+\begin{verbatim}
+@software{Yamada2024,
+  author    = {Yamada, Y.},
+  date      = {2024},
+  title     = {Example Analysis Toolkit},
+  version   = {2.1.0},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.13882453}
+}
+\end{verbatim}
+
+\begin{mihon}
+  \fullcite{Yamada2024}
+\end{mihon}
+
 \subsubsection{新聞記事および雑誌記事の引用}
 新聞記事などを引用する場合は，\texttt{misc}（その他）タイプとしてエントリを作成します。発行日については，朝刊・夕刊などの区別を含め，\texttt{howpublished}フィールドに記載します。
 

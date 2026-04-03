@@ -126,12 +126,43 @@
     }%
   }%
 }
+%%% origauthor専用フォーマット（英語時は強制イニシャル化）
+\DeclareNameFormat{origauthor-init}{%
+  \ifthenelse{\boolean{japanese}}{%
+    \ifthenelse{\value{listcount}=\maxprtnames\AND\value{listcount}<\value{listtotal}}{%
+      \space\ldots\space%
+    }{%
+      \ifthenelse{\value{listcount}>\maxprtnames\AND\value{listcount}<\value{listtotal}}{}{%
+        \ifthenelse{\value{listcount}=1}{}{%
+          \ifthenelse{\value{listcount}<\maxprtnames}{%
+            \printtext{・}%
+          }{}%
+        }%
+        \namepartfamily%
+        \space%
+        \namepartgiven%
+      }%
+    }%
+  }{%
+    \ifthenelse{\value{listcount}=\maxprtnames\AND\value{listcount}<\value{listtotal}}{%
+      \addcomma\space\ldots\space%
+    }{%
+      \ifthenelse{\value{listcount}>\maxprtnames\AND\value{listcount}<\value{listtotal}}{}{%
+        \usebibmacro{name:family-given}%
+        {\namepartfamily}%
+        {\namepartgiveni}%
+        {\namepartprefix}%
+        {\namepartsuffix}%
+      }%
+    }%
+  }%
+}
 \DeclareNameAlias{author}{default}
 \DeclareNameAlias{editor}{default}
 \DeclareNameAlias{editora}{default}
-\DeclareNameAlias{translator}{default}
-\DeclareNameAlias{translatora}{default}
-\DeclareNameAlias{origauthor}{default}
+\DeclareNameAlias{translator}{family-given}
+\DeclareNameAlias{translatora}{family-given}
+\DeclareNameAlias{origauthor}{origauthor-init}
 
 %%% ファーストネーム（イニシャル），ファミリーネームの順
 \DeclareNameFormat{given-family}{%
@@ -237,7 +268,7 @@
       }{%
         \addspace\printtext[parens]{Ed.}%
       }%
-    }
+    }{}
   }
 }
 
@@ -407,9 +438,7 @@
 
 %%% 雑誌名 %%%
 \DeclareFieldFormat[article,misc]{journaltitle}{%
-  \ifthenelse{\boolean{japanese}}{#1}{%
-    \emph{#1}%
-  }%
+  \ifthenelse{\boolean{japanese}}{#1}{\mkbibemph{#1}}%
 }%
 
 %%% 大会発表論文集，Proceedings %%%
@@ -574,7 +603,9 @@
   \ifthenelse{\boolean{japanese}}{% 日本語文献
     \ifnameundef{origauthor}{}{%
       \renewcommand{\revsdnamepunct}{\addcomma\space}%
-      \printnames[family-given]{origauthor}\setunit{\addperiod\addspace}%
+      \setboolean{japanese}{false}%
+      \printnames[origauthor-init]{origauthor}\setunit{\addperiod\addspace}%
+      \setboolean{japanese}{true}%
       % \usebibmacro{date+extradate}\adddot\space%
       \printfield{origyear}\adddot\space % 原著出版年
       \printfield[emph]{origtitle}\setunit*{\adddot\space}%
@@ -612,7 +643,7 @@
     \iffieldundef{volume}{}{%
       \printtext{Vol.}\strfield{volume}%
       \addcomma\space}%
-    \printnames[given-family]{translator}\addcomma\space%
+    \printnames[family-given]{translator}\addcomma\space%
     \usebibmacro{translatortype}%
     \bibcloseparen\adddot\space%
     \printlist{publisher}\adddot\space%
@@ -629,7 +660,7 @@
     \iffieldundef{language}{%
       \setboolean{japanese}{false}%
     }{
-      \ifthenelse{\equal{\thefirstlistitem{language}}{japanese}}{
+      \ifthenelse{\equal{\thefirstlistitem{language}}{japanese}\OR\equal{\thefirstlistitem{language}}{Japanese}}{
         \setboolean{japanese}{true}
       }{%
         \setboolean{japanese}{false}
@@ -681,7 +712,7 @@
     \iffieldundef{volume}{}{%
       \printtext{Vol.}\strfield{volume}\addcomma\space%
     }%
-    \printnames[given-family]{translator}%
+    \printnames[family-given]{translator}%
     \usebibmacro{translatortype}%
   }%%
   \adddot\space%
@@ -696,7 +727,7 @@
 \newbibmacro*{related:mvbook}[1]{%
   \entrydata*{#1}{%
     \renewcommand*{\relatedpunct}{}%
-    \ifthenelse{\equal{\thefirstlistitem{language}}{japanese}}{
+    \ifthenelse{\equal{\thefirstlistitem{language}}{japanese}\OR\equal{\thefirstlistitem{language}}{Japanese}}{
       \setboolean{japanese}{true}
     }{%
       \setboolean{japanese}{false}
@@ -1058,6 +1089,27 @@
 }
 
 %% iii) 印刷中の論文 → (3)- i)，ii）を使用
+
+%% v) ソフトウェアの引用
+\DeclareBibliographyDriver{software}{%
+  \usebibmacro{begentry}%
+  % 著者名 + 年
+  \usebibmacro{author+year}\setunit{\addperiod\addspace}%
+  % タイトル
+  \printfield{title}%
+  % バージョン
+  \iffieldundef{version}{}{%
+    \addspace\mkbibparens{\printfield{version}}%
+  }%
+  \setunit{\addperiod\addspace}%
+  % 出版者（例：Zenodo）
+  \iflistundef{publisher}{}{%
+    \printlist{publisher}\setunit{\addperiod\addspace}%
+  }%
+  % DOI
+  \printfield{doi}%
+  \usebibmacro{finentry}%
+}
 
 %% iv) 新聞記事および雑誌記事の引用
 \DeclareBibliographyDriver{misc}{%
